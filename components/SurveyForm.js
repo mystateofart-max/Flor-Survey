@@ -173,7 +173,7 @@ export default function SurveyForm({ initialCount }) {
   if (isSuccess) {
     return (
       <div style={{ textAlign: 'center', padding: '40px', backgroundColor: 'var(--surface)', borderRadius: '12px', border: '1px solid var(--border)' }}>
-        <div style={{ fontSize: '48px', marginBottom: '16px' }}>✨</div>
+
         <h1 style={{ color: 'var(--primary)', marginBottom: '16px' }}>{t.thankYou}</h1>
         <p style={{ fontSize: '18px', marginBottom: '32px', color: 'var(--foreground)' }}>{t.thankYouMessage}</p>
         <button className="btn-primary" onClick={() => { setIsSuccess(false); setFormData({}); }}>{t.submitAnother}</button>
