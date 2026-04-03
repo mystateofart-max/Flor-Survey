@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { centres } from '@/lib/centres';
 
 const uiText = {
   en: {
@@ -112,12 +113,12 @@ const questions = [
   {
     id: 'q_feature_help',
     en: {
-      text: 'Would a feature that identifies and assigns at-risk members to available trainers help your team?',
-      options: ['Yes', 'No', 'Maybe']
+      text: 'Would it help if an app gave your trainers a daily list of members who are starting to skip classes or not working out as usual, so they know exactly who to talk to today?',
+      options: ['Yes, very much', 'Maybe a little', 'No, not really']
     },
     bn: {
-      text: 'আমরা এমন একটি ফিচার তৈরির কথা ভাবছি যা মেম্বারদের আচরণ বিশ্লেষণ করে ট্রেইনারদের অ্যালার্ট দেবে। এটি কি আপনার টিমকে সাহায্য করবে?',
-      options: ['হ্যাঁ', 'না', 'হতে পারে']
+      text: 'যদি কোনো অ্যাপ আপনার ট্রেইনারদের প্রতিদিন এমন মেম্বারদের লিস্ট দেয় যারা সেন্টারে আসা কমিয়ে দিচ্ছে বা নিয়মিত ওয়ার্কআউট করছে না, যাতে ট্রেইনাররা বুঝতে পারে ঠিক কার সাথে আজ কথা বলা প্রয়োজন— তবে এটি কি সহায়ক হবে?',
+      options: ['হ্যাঁ, খুব সহায়ক হবে', 'হয়তো একটু', 'না, বিশেষ নয়']
     }
   },
   {
@@ -157,17 +158,89 @@ const questions = [
   }
 ];
 
-export default function SurveyForm({ initialCount }) {
+const categoryMap = {
+  'Gym': ['Boutique Gym', 'Independent Gym', 'Strength/Gym', 'Strength Floor', 'Upscale', 'Gym', 'Personal Training', 'Private Studio'],
+  'Yoga': ['Yoga', 'Yoga/Wellness', 'Yoga/Cardio', 'Holistic'],
+  'Pilates': ['Pilates', 'Pilates/Gym', 'Yoga/Pilates', 'Shape Studio'],
+  'CrossFit': ['CrossFit', 'CrossFit/Boutique', 'The Grid', 'The Arena'],
+  'Dance/Zumba': ['Zumba/Fitness', 'Dance/Fitness', 'Dance/Aerobics', 'Zumba/HIIT', 'The Studio'],
+  'Functional': ['Functional Training', 'Functional', 'The Workshop', 'HIIT', 'The Lab', 'Athletic', 'Peak Performance', 'Scientific Training'],
+  'MMA/Boxing': ['MMA/Functional', 'The Box', 'Kickstart Fitness'],
+  'Wellness': ['Wellness Center', 'Wellness/Gym', 'Physio/Fitness', 'Mind & Body', 'Sintha Dance & Fitness'],
+  'Specialty': ['Corrective/Boutique', 'Ladies Boutique', 'Corporate Boutique', 'Upscale Boutique', 'Premium Boutique']
+};
+
+const getCoreCategory = (rawCategory) => {
+  for (const [core, variants] of Object.entries(categoryMap)) {
+    if (variants.includes(rawCategory)) return core;
+  }
+  return 'Other';
+};
+
+export default function SurveyForm({ initialCount: initialPropCount }) {
   const [formData, setFormData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [lang, setLang] = useState('en');
+  const [completedCentres, setCompletedCentres] = useState(new Set());
+  const [selectedCentre, setSelectedCentre] = useState(null);
+  const [currentCount, setCurrentCount] = useState(initialPropCount);
+  
+  // Filtering State
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   const t = uiText[lang];
+
+  useEffect(() => {
+    const fetchResponses = async () => {
+      try {
+        const res = await fetch('/api/responses');
+        if (res.ok) {
+          const data = await res.json();
+          const names = new Set(data.map(r => r.centre_name));
+          setCompletedCentres(names);
+          setCurrentCount(data.length);
+        }
+      } catch (err) {
+        console.error('Failed to fetch completion status:', err);
+      }
+    };
+    fetchResponses();
+  }, [isSuccess]);
 
   const handleOptionChange = (questionId, value) => {
     setFormData(prev => ({ ...prev, [questionId]: value }));
   };
+
+  const handleCentreSelect = (centre) => {
+    setSelectedCentre(centre);
+    setFormData(prev => ({ ...prev, centre_name: centre.name }));
+  };
+
+  const filteredCentres = centres.filter(centre => {
+    const coreCat = getCoreCategory(centre.category);
+    const matchesCategory = selectedCategory === 'All' || coreCat === selectedCategory;
+    return matchesCategory;
+  });
+
+  const getCategoryStats = () => {
+    const stats = {};
+    Object.keys(categoryMap).forEach(cat => {
+      stats[cat] = { done: 0, total: 0 };
+    });
+
+    centres.forEach(centre => {
+      const core = getCoreCategory(centre.category);
+      if (stats[core]) {
+        stats[core].total++;
+        if (completedCentres.has(centre.name)) stats[core].done++;
+      }
+    });
+
+    return stats;
+  };
+
+  const categoryStats = getCategoryStats();
 
   const toggleLanguage = () => {
     setLang(lang === 'en' ? 'bn' : 'en');
@@ -224,21 +297,84 @@ export default function SurveyForm({ initialCount }) {
         <svg fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" style={{ width: '16px', height: '16px' }}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
         </svg>
-        {initialCount} {t.applicationsSubmitted}
+        {currentCount} {t.applicationsSubmitted}
       </div>
       
-      <form onSubmit={handleSubmit}>
-        <div className="question-block" style={{ marginBottom: '48px', borderBottom: '1px solid var(--border)', paddingBottom: '32px' }}>
-          <h3 style={{ marginBottom: '16px' }}>{t.centreNameLabel}</h3>
-          <input 
-            type="text" 
-            placeholder={t.centreNamePlaceholder}
-            className="text-input"
-            value={formData.centre_name || ''}
-            onChange={(e) => handleOptionChange('centre_name', e.target.value)}
-            required
-          />
-        </div>
+      <div className="survey-layout">
+        <aside className="directory-sidebar">
+          <div className="directory-header">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <h2>{lang === 'en' ? 'Centres Directory' : 'সেন্টার ডিরেক্টরি'}</h2>
+              <select 
+                className="category-select-subtle"
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+              >
+                <option value="All">{lang === 'en' ? 'All Types' : 'সব টাইপ'}</option>
+                {Object.keys(categoryMap).map(cat => (
+                  <option key={cat} value={cat}>{cat}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div className="directory-list">
+            {filteredCentres.map((centre) => {
+              const isCompleted = completedCentres.has(centre.name);
+              const isSelected = selectedCentre?.name === centre.name;
+              
+              return (
+                <div 
+                  key={centre.name}
+                  className={`directory-item ${isSelected ? 'selected' : ''} ${isCompleted ? 'completed' : ''}`}
+                  onClick={() => handleCentreSelect(centre)}
+                >
+                  <div className="centre-info-main">
+                    <span className="centre-name">{centre.name}</span>
+                    <span className="centre-loc">{centre.location}</span>
+                  </div>
+                  <div className="status-indicator">
+                    {isCompleted ? (
+                      <span className="status-badge done">Done</span>
+                    ) : (
+                      <span className="status-badge pending">Pending</span>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </aside>
+
+        <div className="form-wrapper" style={{ flex: 1, height: 'max-content' }}>
+          {selectedCentre && (
+            <div className="info-card">
+              <div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                  <h4>{lang === 'en' ? 'Selected Centre' : 'নির্বাচিত সেন্টার'}</h4>
+                  <span className="status-badge" style={{ fontSize: '10px', background: '#F3F4F6', color: '#4B5563' }}>{selectedCentre.category}</span>
+                </div>
+                <div className="centre-name-display">{selectedCentre.name}</div>
+                <div style={{ opacity: 0.8, fontSize: '13px', color: '#888' }}>{selectedCentre.location}</div>
+              </div>
+              <div style={{ textAlign: 'right' }}>
+                <h4>{lang === 'en' ? 'Phone Number' : 'ফোন নম্বর'}</h4>
+                <div className="phone-number">{selectedCentre.phone}</div>
+              </div>
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit}>
+            <div className="question-block" style={{ marginBottom: '48px', borderBottom: '1px solid var(--border)', paddingBottom: '32px' }}>
+              <h3 style={{ marginBottom: '16px' }}>{t.centreNameLabel}</h3>
+              <input 
+                type="text" 
+                placeholder={t.centreNamePlaceholder}
+                className="text-input"
+                value={formData.centre_name || ''}
+                onChange={(e) => handleOptionChange('centre_name', e.target.value)}
+                required
+              />
+            </div>
 
         {questions.map((q, index) => {
           const qLang = q[lang];
@@ -292,7 +428,9 @@ export default function SurveyForm({ initialCount }) {
             {isSubmitting ? t.submitting : t.submitSurvey}
           </button>
         </div>
-      </form>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
