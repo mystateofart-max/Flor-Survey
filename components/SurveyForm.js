@@ -32,54 +32,54 @@ const questions = [
     id: 'q_identify_member',
     en: {
       text: 'How do you currently identify a member who is losing interest or might leave soon?',
-      options: ['Use software', 'Guesswork', 'None']
+      options: ['Software', 'Guess work', 'None']
     },
     bn: {
-      text: 'আপনি বর্তমানে কীভাবে এমন কোনো সদস্যকে চিহ্নিত করেন যিনি আগ্রহ হারাচ্ছেন বা শীঘ্রই চলে যেতে পারেন?',
-      options: ['সফটওয়্যার ব্যবহার করি', 'অনুমান করে', 'কোনওটিই নয়']
+      text: 'আপনি বর্তমানে ঠিক কীভাবে বোঝেন যে কোনো মেম্বার জিম ছেড়ে দিতে পারেন বা সার্ভিস নিয়ে খুশি নন?',
+      options: ['সফটওয়্যার', 'অনুমান করে', 'কোনওটিই নয়']
     }
   },
   {
     id: 'q_try_to_save',
     en: {
-      text: 'Do you try to save them?',
+      text: 'Do you take any specific steps to try and retain them?',
       options: ['Yes', 'No', 'Sometimes']
     },
     bn: {
-      text: 'আপনি কি তাদের ধরে রাখার চেষ্টা করেন?',
+      text: 'আপনি কি তাদের ধরে রাখার জন্য বিশেষ কোনো পদক্ষেপ নেন?',
       options: ['হ্যাঁ', 'না', 'মাঝে মাঝে']
     }
   },
   {
     id: 'q_does_it_work',
     en: {
-      text: 'Does it work?',
-      options: ['Yes', 'No', 'Sometimes']
+      text: 'How effective are those efforts?',
+      options: ['Yes (Effective)', 'No (Not Effective)', 'Sometimes']
     },
     bn: {
-      text: 'এটা কি কাজ করে?',
-      options: ['হ্যাঁ', 'না', 'মাঝে মাঝে']
+      text: 'আপনার সেই প্রচেষ্টাগুলো কি আশানুরূপ কাজে দেয়?',
+      options: ['হ্যাঁ (সফল)', 'না (ব্যর্থ)', 'মাঝে মাঝে']
     }
   },
   {
     id: 'q_track_attendance',
     en: {
       text: 'How do you currently track member attendance and workout consistency?',
-      options: ['Use software', 'Manual', 'None']
+      options: ['Software', 'Manual', 'None']
     },
     bn: {
-      text: 'বর্তমানে আপনি কীভাবে সদস্যদের উপস্থিতি এবং ওয়ার্কআউটের ধারাবাহিকতা তদারকি করেন?',
-      options: ['সফটওয়্যার ব্যবহার করি', 'ম্যানুয়ালি', 'কোনওটিই নয়']
+      text: 'সদস্যদের উপস্থিতি এবং ওয়ার্কআউটের নিয়মিততা আপনি বর্তমানে কীভাবে ট্র্যাক করেন?',
+      options: ['সফটওয়্যার', 'ম্যানুয়ালি', 'কোনওটিই নয়']
     }
   },
   {
     id: 'q_frustration_rating',
     en: {
-      text: 'And do you feel any frustration trying to keep your members engaged? Out of 10 how would you rate it?',
+      text: 'On a scale of 1-10, how frustrated do you feel trying to keep your members engaged?',
       options: ['<5', '5', '>5']
     },
     bn: {
-      text: 'সদস্যদের যুক্ত রাখতে গিয়ে আপনি কি কোনো হতাশা বা কষ্ট অনুভব করেন? ১০ এর মধ্যে এটিকে কত রেটিং দেবেন?',
+      text: 'মেম্বারদের এঙ্গেজড রাখার চেষ্টায় আপনি ঠিক কতটা চ্যালেঞ্জ বা হতাশা অনুভব করেন? (১০ এর মধ্যে রেটিং দিন)',
       options: ['<৫', '৫', '>৫']
     }
   },
@@ -87,43 +87,43 @@ const questions = [
     id: 'q_trainers_identify',
     en: {
       text: 'Currently, how do your trainers identify who needs attention during a shift?',
-      options: ['Trainers intuition', 'Something else', "Don't know"]
+      options: ['Manual', 'Software', 'None']
     },
     bn: {
-      text: 'বর্তমানে, আপনার ট্রেইনাররা কীভাবে বোঝেন যে শিফ্ট চলাকালীন কার মনোযোগ প্রয়োজন?',
-      options: ['ট্রেইনারের অনুমান অনুযায়ী', 'অন্য কোনো উপায়ে', 'জানি না']
+      text: 'বর্তমানে আপনার ট্রেইনাররা কীভাবে বোঝেন যে শিফ্ট চলাকালীন কার বাড়তি মনোযোগ বা সাহায্য প্রয়োজন?',
+      options: ['ম্যানুয়াল', 'সফটওয়্যার', 'কিছুই না']
     }
   },
   {
     id: 'q_feature_help',
     en: {
-      text: 'We are considering a feature that will identify members who need attention and alert available trainers on the floor. Do you think it will it help your trainers?',
+      text: 'Would a feature that identifies and assigns at-risk members to available trainers help your team?',
       options: ['Yes', 'No', 'Maybe']
     },
     bn: {
-      text: 'আমরা এমন একটি ফিচার তৈরি করার কথা ভাবছি যা মনোযোগের প্রয়োজন এমন সদস্যদের চিহ্নিত করবে এবং ফ্লোরের ট্রেইনারদের সতর্ক করবে। এটি কি আপনার ট্রেইনারদের সাহায্য করবে বলে মনে করেন?',
+      text: 'আমরা এমন একটি ফিচার তৈরির কথা ভাবছি যা মেম্বারদের আচরণ বিশ্লেষণ করে ট্রেইনারদের অ্যালার্ট দেবে। এটি কি আপনার টিমকে সাহায্য করবে?',
       options: ['হ্যাঁ', 'না', 'হতে পারে']
     }
   },
   {
     id: 'q_software_manual_labor',
     en: {
-      text: 'If you currently use a software how much manual labor does it take to manage it?',
+      text: 'If you use software, how much manual effort does it take to keep it updated?',
       options: ['High', 'Medium', 'Low']
     },
     bn: {
-      text: 'আপনি যদি বর্তমানে কোনো সফটওয়্যার ব্যবহার করেন, তবে এটি পরিচালনা করতে আপনাকে কতটা ম্যানুয়াল কাজ বা পরিশ্রম করতে হয়?',
+      text: 'আপনি যদি কোনো সফটওয়্যার ব্যবহার করেন, তবে সেটি আপডেট রাখতে আপনাকে প্রতিদিন কতটা কাজ বা পরিশ্রম করতে হয়?',
       options: ['বেশি', 'মাঝারি', 'কম']
     }
   },
   {
     id: 'q_churn_drop_rating',
     en: {
-      text: 'If your churn rate could drop by 15% without requiring your staff to do any extra manual work, how would you rate that?',
+      text: 'If your churn rate could drop by 15% without any extra work from your staff, how valuable would that be?',
       options: ['High', 'Medium', 'Low']
     },
     bn: {
-      text: 'কর্মীদের দিয়ে কোনো অতিরিক্ত কাজ না করিয়ে যদি আপনার সদস্য চলে যাওয়ার হার (churn rate) ১৫% কমে যায়, তবে আপনি এই বিষয়টিকে কতটা গুরুত্ব দেবেন?',
+      text: 'কর্মীদের বাড়তি কোনো কাজ ছাড়াই যদি মেম্বার ড্রপ-আউট ১৫% কমিয়ে আনা যায়, তবে আপনার কাছে এই সুবিধাটির গুরুত্ব কতটা?',
       options: ['বেশি', 'মাঝারি', 'কম']
     }
   }
@@ -138,7 +138,6 @@ export default function SurveyForm({ initialCount }) {
   const t = uiText[lang];
 
   const handleOptionChange = (questionId, value) => {
-    // We always save the english version of the option to keep the database consistent
     setFormData(prev => ({ ...prev, [questionId]: value }));
   };
 
@@ -173,7 +172,6 @@ export default function SurveyForm({ initialCount }) {
   if (isSuccess) {
     return (
       <div style={{ textAlign: 'center', padding: '40px', backgroundColor: 'var(--surface)', borderRadius: '12px', border: '1px solid var(--border)' }}>
-
         <h1 style={{ color: 'var(--primary)', marginBottom: '16px' }}>{t.thankYou}</h1>
         <p style={{ fontSize: '18px', marginBottom: '32px', color: 'var(--foreground)' }}>{t.thankYouMessage}</p>
         <button className="btn-primary" onClick={() => { setIsSuccess(false); setFormData({}); }}>{t.submitAnother}</button>
@@ -198,7 +196,7 @@ export default function SurveyForm({ initialCount }) {
         <svg fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" style={{ width: '16px', height: '16px' }}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
         </svg>
-        {lang === 'bn' ? `${initialCount} ${t.applicationsSubmitted}` : `${initialCount} ${t.applicationsSubmitted}`}
+        {initialCount} {t.applicationsSubmitted}
       </div>
       
       <form onSubmit={handleSubmit}>
