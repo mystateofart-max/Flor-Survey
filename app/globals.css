@@ -181,21 +181,24 @@ a {
 
 .survey-layout {
   display: flex;
-  flex-direction: column;
-  gap: 32px;
-  max-width: 800px;
+  flex-direction: row;
+  gap: 40px;
+  max-width: 1000px;
   width: 100%;
   margin: 0 auto;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .directory-sidebar {
-  width: 100%;
-  max-height: 400px;
+  width: 320px;
+  flex-shrink: 0;
+  max-height: calc(100vh - 150px);
   background: transparent;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  position: sticky;
+  top: 40px;
 }
 
 .directory-header {
@@ -366,5 +369,12 @@ a {
 @media (max-width: 1024px) {
   .survey-layout {
     flex-direction: column;
+    align-items: center;
+  }
+  .directory-sidebar {
+    width: 100%;
+    max-height: 400px;
+    position: relative;
+    top: 0;
   }
 }
