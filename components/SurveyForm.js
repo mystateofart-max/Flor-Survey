@@ -113,11 +113,11 @@ const questions = [
   {
     id: 'q_feature_help',
     en: {
-      text: 'Would it help if an app gave your trainers a daily list of members who are starting to skip classes or not working out as usual, so they know exactly who to talk to today?',
+      text: 'We’re considering a feature that triggers an early alert when changes in a member’s workout patterns suggest they’re likely to disengage. Would this be helpful for your trainers?',
       options: ['Yes, very much', 'Maybe a little', 'No, not really']
     },
     bn: {
-      text: 'যদি কোনো অ্যাপ আপনার ট্রেইনারদের প্রতিদিন এমন মেম্বারদের লিস্ট দেয় যারা সেন্টারে আসা কমিয়ে দিচ্ছে বা নিয়মিত ওয়ার্কআউট করছে না, যাতে ট্রেইনাররা বুঝতে পারে ঠিক কার সাথে আজ কথা বলা প্রয়োজন— তবে এটি কি সহায়ক হবে?',
+      text: 'আমরা এমন একটি ফিচার নিয়ে ভাবছি যা কোনো মেম্বারের ওয়ার্কআউট প্যাটার্নের পরিবর্তন দেখে আগে থেকেই বুঝতে পারবে যে তিনি সেন্টার ছেড়ে দিতে পারেন এবং আপনার ট্রেইনারদের সতর্ক করবে। আপনার কি মনে হয় এটি ট্রেইনারদের জন্য সহায়ক হবে?',
       options: ['হ্যাঁ, খুব সহায়ক হবে', 'হয়তো একটু', 'না, বিশেষ নয়']
     }
   },
