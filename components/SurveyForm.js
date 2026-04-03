@@ -349,7 +349,7 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
           {selectedCentre && (
             <div className="info-card">
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
                   <span className="status-badge" style={{ fontSize: '10px', background: 'var(--primary)', color: 'white', letterSpacing: '0.5px', padding: '2px 6px' }}>{selectedCentre.category}</span>
                 </div>
                 <div className="centre-name-display">{selectedCentre.name}</div>
