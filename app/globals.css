@@ -109,6 +109,12 @@ a {
   background-color: var(--background);
 }
 
+.survey-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 .form-wrapper {
   width: 100%;
   max-width: 600px;

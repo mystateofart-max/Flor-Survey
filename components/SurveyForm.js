@@ -281,7 +281,7 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
   }
 
   return (
-    <div className="form-wrapper">
+    <div className="survey-container">
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
         <h1 style={{ fontSize: '28px', color: '#1A1514', fontWeight: 600 }}>{t.title}</h1>
         <button 
