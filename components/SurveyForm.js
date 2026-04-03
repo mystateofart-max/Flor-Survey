@@ -135,11 +135,13 @@ const questions = [
     id: 'q_software_wishlist',
     en: {
       text: 'What is one feature you wish your current software had?',
-      isText: true
+      isText: true,
+      isOptional: true
     },
     bn: {
       text: 'আপনার বর্তমান সফটওয়্যারে এমন কোন ফিচার আছে যা আপনি থাকলে খুশি হতেন?',
-      isText: true
+      isText: true,
+      isOptional: true
     }
   },
   {
@@ -243,7 +245,14 @@ export default function SurveyForm({ initialCount }) {
           
           return (
             <div key={q.id} className="question-block" style={{ animationDelay: `${index * 0.05}s` }}>
-              <h3><span className="question-number">{index + 1}.</span> {qLang.text}</h3>
+              <h3>
+                <span className="question-number">{index + 1}.</span> {qLang.text}
+                {qLang.isOptional && (
+                  <span style={{ fontSize: '14px', fontWeight: 400, color: '#888', marginLeft: '8px' }}>
+                    ({lang === 'en' ? 'Optional' : 'ঐচ্ছিক'})
+                  </span>
+                )}
+              </h3>
               {qLang.isText ? (
                 <textarea 
                   className="text-input"
