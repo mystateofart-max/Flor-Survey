@@ -29,6 +29,17 @@ const uiText = {
 
 const questions = [
   {
+    id: 'q_member_count',
+    en: {
+      text: 'How many active members do you currently have?',
+      options: ['<100', '100-250', '250-500', '>500']
+    },
+    bn: {
+      text: 'বর্তমানে আপনার মোট কতজন সক্রিয় মেম্বার আছেন?',
+      options: ['১০০ এর কম', '১০০-২৫০', '২৫০-৫০০', '৫০০ এর বেশি']
+    }
+  },
+  {
     id: 'q_identify_member',
     en: {
       text: 'How do you currently identify a member who is losing interest or might leave soon?',
