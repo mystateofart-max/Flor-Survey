@@ -350,15 +350,12 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
             <div className="info-card">
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                  <h4>{lang === 'en' ? 'Selected Centre' : 'নির্বাচিত সেন্টার'}</h4>
+                  <span className="status-badge" style={{ fontSize: '10px', background: 'var(--primary)', color: 'white', letterSpacing: '0.5px', padding: '2px 6px' }}>{selectedCentre.category}</span>
                 </div>
                 <div className="centre-name-display">{selectedCentre.name}</div>
                 <div style={{ opacity: 0.8, fontSize: '13px', color: '#888' }}>{selectedCentre.location}</div>
               </div>
               <div style={{ textAlign: 'right' }}>
-                <div style={{ marginBottom: '8px' }}>
-                  <span className="status-badge" style={{ fontSize: '10px', background: 'var(--primary)', color: 'white', letterSpacing: '0.5px', padding: '2px 6px' }}>{selectedCentre.category}</span>
-                </div>
                 <h4>{lang === 'en' ? 'Phone Number' : 'ফোন নম্বর'}</h4>
                 <div className="phone-number">{selectedCentre.phone}</div>
               </div>
