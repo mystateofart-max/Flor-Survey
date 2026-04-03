@@ -282,24 +282,22 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
 
   return (
     <div className="survey-container">
-      <div className="survey-header">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
-          <h1 style={{ fontSize: '28px', color: '#1A1514', fontWeight: 600 }}>{t.title}</h1>
-          <button 
-            type="button" 
-            onClick={toggleLanguage}
-            style={{ background: 'none', border: '1px solid var(--border)', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer', fontSize: '14px', fontWeight: 500 }}
-          >
-            {t.switchLang}
-          </button>
-        </div>
-        
-        <div className="count-badge">
-          <svg fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" style={{ width: '16px', height: '16px' }}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-          </svg>
-          {currentCount} {t.applicationsSubmitted}
-        </div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '12px' }}>
+        <h1 style={{ fontSize: '28px', color: '#1A1514', fontWeight: 600 }}>{t.title}</h1>
+        <button 
+          type="button" 
+          onClick={toggleLanguage}
+          style={{ background: 'none', border: '1px solid var(--border)', padding: '6px 12px', borderRadius: '4px', cursor: 'pointer', fontSize: '14px', fontWeight: 500 }}
+        >
+          {t.switchLang}
+        </button>
+      </div>
+      
+      <div className="count-badge">
+        <svg fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" style={{ width: '16px', height: '16px' }}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+        </svg>
+        {currentCount} {t.applicationsSubmitted}
       </div>
       
       <div className="survey-layout">
@@ -347,9 +345,8 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
           </div>
         </aside>
 
-        <div className="form-wrapper">
-          <div className="form-inner">
-            {selectedCentre && (
+        <div className="form-wrapper" style={{ flex: 1, height: 'max-content' }}>
+          {selectedCentre && (
             <div className="info-card">
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
@@ -426,13 +423,12 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
             </div>
           );
         })}
-            <div style={{ marginTop: '48px', textAlign: 'right', borderTop: '1px solid var(--border)', paddingTop: '32px' }}>
-              <button type="submit" className="btn-primary" disabled={isSubmitting}>
-                {isSubmitting ? t.submitting : t.submitSurvey}
-              </button>
-            </div>
+        <div style={{ marginTop: '48px', textAlign: 'right', borderTop: '1px solid var(--border)', paddingTop: '32px' }}>
+          <button type="submit" className="btn-primary" disabled={isSubmitting}>
+            {isSubmitting ? t.submitting : t.submitSurvey}
+          </button>
+        </div>
           </form>
-          </div>
         </div>
       </div>
     </div>
