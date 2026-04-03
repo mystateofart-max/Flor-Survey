@@ -1,5 +1,7 @@
 # Survey Questions
 
+**Required Field: Name of the Centre**
+
 1. How many active members do you currently have?
    - [ ] <100
    - [ ] 100-250
@@ -46,7 +48,10 @@
    - [ ] Medium
    - [ ] Low
 
-10. If your churn rate could drop by 15% without any extra work from your staff, how valuable would that be?
-   - [ ] High
-   - [ ] Medium
-   - [ ] Low
+10. What is one feature you wish your current software had?
+    - (Open-ended text)
+
+11. If your churn rate could drop by 15% without any extra work from your staff, how valuable would that be?
+    - [ ] High
+    - [ ] Medium
+    - [ ] Low

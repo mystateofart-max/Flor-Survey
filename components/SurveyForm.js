@@ -13,6 +13,8 @@ const uiText = {
     submitting: 'Submitting...',
     submitSurvey: 'Submit Survey',
     switchLang: 'বাংলায় দেখুন',
+    centreNameLabel: 'Name of the Centre',
+    centreNamePlaceholder: 'Enter centre name',
   },
   bn: {
     title: 'Flor সার্ভে',
@@ -24,6 +26,8 @@ const uiText = {
     submitting: 'জমা দেওয়া হচ্ছে...',
     submitSurvey: 'সার্ভে জমা দিন',
     switchLang: 'View in English',
+    centreNameLabel: 'সেন্টারের নাম',
+    centreNamePlaceholder: 'সেন্টারের নাম লিখুন',
   }
 };
 
@@ -128,6 +132,17 @@ const questions = [
     }
   },
   {
+    id: 'q_software_wishlist',
+    en: {
+      text: 'What is one feature you wish your current software had?',
+      isText: true
+    },
+    bn: {
+      text: 'আপনার বর্তমান সফটওয়্যারে এমন কোন ফিচার আছে যা আপনি থাকলে খুশি হতেন?',
+      isText: true
+    }
+  },
+  {
     id: 'q_churn_drop_rating',
     en: {
       text: 'If your churn rate could drop by 15% without any extra work from your staff, how valuable would that be?',
@@ -211,33 +226,55 @@ export default function SurveyForm({ initialCount }) {
       </div>
       
       <form onSubmit={handleSubmit}>
+        <div className="question-block" style={{ marginBottom: '48px', borderBottom: '1px solid var(--border)', paddingBottom: '32px' }}>
+          <h3 style={{ marginBottom: '16px' }}>{t.centreNameLabel}</h3>
+          <input 
+            type="text" 
+            placeholder={t.centreNamePlaceholder}
+            className="text-input"
+            value={formData.centre_name || ''}
+            onChange={(e) => handleOptionChange('centre_name', e.target.value)}
+            required
+          />
+        </div>
+
         {questions.map((q, index) => {
           const qLang = q[lang];
           
           return (
             <div key={q.id} className="question-block" style={{ animationDelay: `${index * 0.05}s` }}>
               <h3><span className="question-number">{index + 1}.</span> {qLang.text}</h3>
-              <div className="options-group">
-                {qLang.options.map((optionDisplayText, objIndex) => {
-                  const englishValue = q.en.options[objIndex];
-                  return (
-                    <label 
-                      key={englishValue} 
-                      className={`radio-container ${formData[q.id] === englishValue ? 'selected' : ''}`}
-                    >
-                      <input 
-                        type="radio" 
-                        name={q.id} 
-                        value={englishValue} 
-                        checked={formData[q.id] === englishValue}
-                        onChange={() => handleOptionChange(q.id, englishValue)}
-                        required
-                      />
-                      <span>{optionDisplayText}</span>
-                    </label>
-                  );
-                })}
-              </div>
+              {qLang.isText ? (
+                <textarea 
+                  className="text-input"
+                  style={{ minHeight: '100px', resize: 'vertical' }}
+                  value={formData[q.id] || ''}
+                  onChange={(e) => handleOptionChange(q.id, e.target.value)}
+                  placeholder="..."
+                />
+              ) : (
+                <div className="options-group">
+                  {qLang.options.map((optionDisplayText, objIndex) => {
+                    const englishValue = q.en.options[objIndex];
+                    return (
+                      <label 
+                        key={englishValue} 
+                        className={`radio-container ${formData[q.id] === englishValue ? 'selected' : ''}`}
+                      >
+                        <input 
+                          type="radio" 
+                          name={q.id} 
+                          value={englishValue} 
+                          checked={formData[q.id] === englishValue}
+                          onChange={() => handleOptionChange(q.id, englishValue)}
+                          required
+                        />
+                        <span>{optionDisplayText}</span>
+                      </label>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           );
         })}
