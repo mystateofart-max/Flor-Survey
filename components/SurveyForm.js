@@ -73,7 +73,7 @@ const questions = [
       options: ['Yes - Effective', 'No - Not Effective', 'Sometimes']
     },
     bn: {
-      text: 'আপনার সেই প্রচেষ্টাগুলো কি আশানুরূপ কাজে দেয়?',
+      text: 'আপনার সেই প্রচেষ্টাগুলো কি আশানুরূপ কাজে দেয়?',
       options: ['হ্যাঁ - সফল', 'না - ব্যর্থ', 'মাঝে মাঝে']
     }
   },
@@ -84,8 +84,9 @@ const questions = [
       options: ['Biometric/Fingerprint/REID', 'Mobile App / QR Code', 'Manual', 'None']
     },
     bn: {
-      text: 'মেম্বাররা যখন সেন্টারে আসেন, তখন তারা সাধারণত কীভাবে নিজেদের উপস্থিতি নথিভুক্ত করেন বা চেক-ইন করেন?',
-      options: ['বায়োমেট্রিক/ফিঙ্গারপ্রিন্ট', 'মোবাইল অ্যাপ/কিউআর কোড', 'ম্যানুয়ালি', 'কোনওটিই নয়']
+      text: 'মেম্বাররা যখন সেন্টারে আসেন, তখন তারা সাধারণত কীভাবে নিজেদের উপস্থিতি নথিভুক্ত করেন বা
+চেক-ইন করেন?',
+      options: ['বায়োমেট্রিক/ফিঙ্গারপ্রিন্ট', 'মোবাইল অ্যাপ/কিউআর কোড', 'ম্যানুয়ালি', 'কোনওটিই নয়']
     }
   },
   {
@@ -95,18 +96,19 @@ const questions = [
       options: ['Less than 5%', '5-10%', 'More than 10%']
     },
     bn: {
-      text: 'প্রতি মাসে আপনার মোট মেম্বারদের মধ্যে আনুমানিক কত শতাংশ আসা বন্ধ করে দেন আর ফিরে আসেন না?',
+      text: 'প্রতি মাসে আপনার মোট মেম্বারদের মধ্যে আনুমানিক কত শতাংশ আসা বন্ধ করে দেন আর ফিরে আসেন
+না?',
       options: ['৫% এর কম', '৫-১০%', '১০% এর বেশি']
     }
   },
   {
     id: 'q_trainers_identify',
     en: {
-      text: 'Currently, how do your trainers identify who needs attention during a shift?',
+      text: 'Currently, how do your trainers identify who needs extra attention during a shift?',
       options: ['Manual', 'Software', 'None']
     },
     bn: {
-      text: 'বর্তমানে আপনার ট্রেইনাররা কীভাবে বোঝেন যে শিফ্ট চলাকালীন কার বাড়তি মনোযোগ বা সাহায্য প্রয়োজন?',
+      text: 'বর্তমানে আপনার ট্রেইনাররা কীভাবে বোঝেন যে শিফ্ট চলাকালীন কার বাড়তি মনোযোগ বা সাহায্য প্রয়োজন?',
       options: ['ম্যানুয়াল', 'সফটওয়্যার', 'কিছুই না']
     }
   },
@@ -128,19 +130,20 @@ const questions = [
       options: ['High', 'Medium', 'Low']
     },
     bn: {
-      text: 'আপনি যদি কোনো সফটওয়্যার ব্যবহার করেন, তবে সেটি আপডেট রাখতে আপনাকে প্রতিদিন কতটা কাজ বা পরিশ্রম করতে হয়?',
+      text: 'আপনি যদি কোনো সফটওয়্যার ব্যবহার করেন, তবে সেটি আপডেট রাখতে আপনাকে প্রতিদিন কতটা কাজ বা
+পরিশ্রম করতে হয়?',
       options: ['বেশি', 'মাঝারি', 'কম']
     }
   },
   {
     id: 'q_software_wishlist',
     en: {
-      text: 'What is one feature you wish your current software had?',
+      text: 'What is one feature you wish your current software had? (Optional)',
       isText: true,
       isOptional: true
     },
     bn: {
-      text: 'আপনার বর্তমান সফটওয়্যারে এমন কোন ফিচার আছে যা আপনি থাকলে খুশি হতেন?',
+      text: 'আপনার বর্তমান সফটওয়্যারে এমন কোন ফিচার আছে যা আপনি থাকলে খুশি হতেন? (ঐচ্ছিক)',
       isText: true,
       isOptional: true
     }
