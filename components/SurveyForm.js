@@ -47,12 +47,12 @@ const questions = [
   {
     id: 'q_identify_member',
     en: {
-      text: 'How do you currently identify a member who is losing interest or might leave soon?',
+      text: 'How do you currently track or detect members who are at risk of dropping off?',
       options: ['Software', 'Guess work', 'None']
     },
     bn: {
-      text: 'আপনি বর্তমানে ঠিক কীভাবে বোঝেন যে কোনো মেম্বার সেন্টার ছেড়ে দিতে পারেন বা সার্ভিস নিয়ে খুশি নন?',
-      options: ['সফটওয়্যার', 'অনুমান করে', 'কোনওটিই নয়']
+      text: 'আপনি বর্তমানে ঠিক কীভাবে বোঝেন যে কোনো মেম্বার সেন্টার ছেড়ে দিতে পারেন?',
+      options: ['সফটওয়্যার', 'অনুমান করে', 'কোনওটিই নয়']
     }
   },
   {
