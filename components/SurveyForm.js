@@ -37,7 +37,7 @@ const questions = [
     id: 'q_member_count',
     en: {
       text: 'How many active members do you currently have?',
-      options: ['<100', '100-250', '250-500', '>500']
+      options: ['<100', '100-250', '250-500', '500']
     },
     bn: {
       text: 'বর্তমানে আপনার মোট কতজন সক্রিয় মেম্বার আছেন?',
@@ -80,23 +80,23 @@ const questions = [
   {
     id: 'q_track_attendance',
     en: {
-      text: 'How do you currently track member attendance and workout consistency?',
-      options: ['Software', 'Manual', 'None']
+      text: 'How do members currently check in or register their attendance when they visit?',
+      options: ['Biometric/Fingerprint/REID', 'Mobile App / QR Code', 'Manual', 'None']
     },
     bn: {
-      text: 'সদস্যদের উপস্থিতি এবং ওয়ার্কআউটের নিয়মিততা আপনি বর্তমানে কীভাবে ট্র্যাক করেন?',
-      options: ['সফটওয়্যার', 'ম্যানুয়ালি', 'কোনওটিই নয়']
+      text: 'সদস্যরা যখন সেন্টারে আসেন, তখন তারা সাধারণত কীভাবে নিজেদের উপস্থিতি নথিভুক্ত করেন বা চেক-ইন করেন?',
+      options: ['বায়োমেট্রিক/ফিঙ্গারপ্রিন্ট', 'মোবাইল অ্যাপ/কিউআর কোড', 'ম্যানুয়ালি', 'কোনওটিই নয়']
     }
   },
   {
     id: 'q_frustration_rating',
     en: {
-      text: 'On a scale of 1-10, how frustrated do you feel trying to keep your members engaged?',
-      options: ['<5', '5', '>5']
+      text: 'Roughly what percentage of your active members drop out or cancel their membership every month?',
+      options: ['Less than 5%', '5-10%', 'More than 10%']
     },
     bn: {
-      text: 'মেম্বারদের এঙ্গেজড রাখার চেষ্টায় আপনি ঠিক কতটা চ্যালেঞ্জ বা হতাশা অনুভব করেন? (১০ এর মধ্যে রেটিং দিন)',
-      options: ['<৫', '৫', '>৫']
+      text: 'প্রতি মাসে আপনার মোট মেম্বারের আনুমানিক কত শতাংশ আসা বন্ধ করে দেন বা ছেড়ে দেন?',
+      options: ['৫% এর কম', '৫-১০%', '১০% এর বেশি']
     }
   },
   {
@@ -124,7 +124,7 @@ const questions = [
   {
     id: 'q_software_manual_labor',
     en: {
-      text: 'If you use software, how much manual effort does it take to keep it updated?',
+      text: 'If you currently use a software, how much manual effort does it take to keep it updated?',
       options: ['High', 'Medium', 'Low']
     },
     bn: {
