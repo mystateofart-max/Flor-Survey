@@ -6,21 +6,20 @@
 
 ### 1. How many active members do you currently have?
 
-**বর্তমানে আপনার মোট কতজন সক্রিয় মেম্বার আছেন?**
+**বর্তমানে আপনার মোট কতজন সক্রিয় মেম্বার আছেন?**
 
 - [ ] <100 (১০০ এর কম)
 - [ ] 100-250 (১০০-২৫০)
 - [ ] 250-500 (২৫০-৫০০)
 - [ ] 500 (৫০০ এর বেশি)
 
-### 2. How do you currently identify a member who is losing interest or might leave soon?
+### 2. How do you currently track or detect members who are at risk of dropping off?
 
-**আপনি বর্তমানে ঠিক কীভাবে বোঝেন যে কোনো মেম্বার সেন্টার ছেড়ে দিতে পারেন বা সার্ভিস নিয়ে
-খুশি নন?**
+**আপনি বর্তমানে ঠিক কীভাবে বোঝেন যে কোনো মেম্বার সেন্টার ছেড়ে দিতে পারেন?**
 
-- [ ] Software (সফটওয়্যার)
+- [ ] Software (সফটওয়্যার)
 - [ ] Guess work (অনুমান করে)
-- [ ] None (কোনওটিই নয়)
+- [ ] None (কোনওটিই নয়)
 
 ### 3. Do you take any specific steps to try and retain them?
 
@@ -32,7 +31,7 @@
 
 ### 4. How effective are those efforts?
 
-**আপনার সেই প্রচেষ্টাগুলো কি আশানুরূপ কাজে দেয়?**
+**আপনার সেই প্রচেষ্টাগুলো কি আশানুরূপ কাজে দেয়?**
 
 - [ ] Yes - Effective (হ্যাঁ - সফল)
 - [ ] No - Not Effective (না - ব্যর্থ)
@@ -40,44 +39,43 @@
 
 ### 5. How do members currently check in or register their attendance when they visit?
 
-**সদস্যরা যখন সেন্টারে আসেন, তখন তারা সাধারণত কীভাবে নিজেদের উপস্থিতি নথিভুক্ত করেন বা চেক-ইন
-করেন?**
+**মেম্বাররা যখন সেন্টারে আসেন, তখন তারা সাধারণত কীভাবে নিজেদের উপস্থিতি নথিভুক্ত করেন বা
+চেক-ইনকরেন?**
 
-- [ ] Biometric/Fingerprint/REID (বায়োমেট্রিক/ফিঙ্গারপ্রিন্ট)
+- [ ] Biometric/Fingerprint/REID (বায়োমেট্রিক/ফিঙ্গারপ্রিন্ট)
 - [ ] Mobile App / QR Code (মোবাইল অ্যাপ/কিউআর কোড)
 - [ ] Manual (ম্যানুয়ালি)
-- [ ] None (কোনওটিই নয়)
+- [ ] None (কোনওটিই নয়)
 
-### 6. Roughly what percentage of your active members drop out or cancel their membership every month?
+### 6. Roughly what percentage of your active members drop out or cancel their membership every month (churn)?
 
-**প্রতি মাসে আপনার মোট মেম্বারের আনুমানিক কত শতাংশ সেন্টার ছেড়ে দেন?**
+**প্রতি মাসে আপনার মোট members দের মধ্যে আনুমানিক কত শতাংশ আসা বন্ধ করে দেন আর ফিরে আসেন
+না?**
 
 - [ ] Less than 5% (৫% এর কম)
 - [ ] 5-10% (৫-১০%)
 - [ ] More than 10% (১০% এর বেশি)
 
-### 7. Currently, how do your trainers identify who needs attention during a shift?
+### 7. Currently, how do your trainers identify who needs extra attention during a shift?
 
-**বর্তমানে আপনার ট্রেইনাররা কীভাবে বোঝেন যে শিফ্ট চলাকালীন কার বাড়তি মনোযোগ বা সাহায্য প্রয়োজন?**
+**বর্তমানে আপনার ট্রেইনাররা কীভাবে বোঝেন যে শিফ্ট চলাকালীন কার বাড়তি মনোযোগ বা সাহায্য প্রয়োজন?**
 
 - [ ] Manual (ম্যানুয়াল)
 - [ ] Software (সফটওয়্যার)
 - [ ] None (কিছুই না)
 
-### 8. If an ai tool could predict which members are likely to leave and send them personalised messages, and also alert your instructors so they could talk to them. Would that be helpful to you?
+### 8. If an AI tool could automatically identify members who are likely to stop coming — and help you reach out to them before they leave — would that be useful, or is that something you already handle well enough?
 
-**যদি একটা AI টুল আগে থেকে অনুমান করতে পারে কোন মেম্বাররা আসা বন্ধ করতে পারে - তাদেরকে
-পার্সোনালাইজড মেসেজ পাঠায় এবং সাথে সাথে আপনার ট্রেইনারদেরও সতর্ক করে যাতে তারা তাদের সঙ্গে কথা
-বলতে পারেন — এটি কি আপনার জন্য উপকারী হবে?**
+**যদি একটি AI টুল স্বয়ংক্রিয়ভাবে চিহ্নিত করতে পারে কোন মেম্বাররা আসা বন্ধ করতে পারে — এবং তারা চলে যাওয়ার আগেই তাদের সাথে যোগাযোগ করতে সাহায্য করে — এটি কি আপনার কাজে আসবে, নাকি আপনি এখন যেভাবে সামলান তাতেই যথেষ্ট?**
 
-- [ ] Yes, very much (হ্যাঁ, খুব সহায়ক হবে)
-- [ ] Maybe a little (হয়তো একটু)
-- [ ] No, not really (না, বিশেষ নয়)
+- [ ] Yes, very useful (হ্যাঁ, খুবই কাজে আসবে)
+- [ ] Maybe (হয়তো)
+- [ ] No, we handle it well enough (না, আমরা এখন যেভাবে করি তাতেই চলে)
 
 ### 9. If you currently use a software, how much manual effort does it take to keep it updated?
 
-**আপনি যদি কোনো সফটওয়্যার ব্যবহার করেন, তবে সেটি আপডেট রাখতে আপনাকে প্রতিদিন কতটা কাজ বা
-পরিশ্রম করতে হয়?**
+**আপনি যদি কোনো সফটওয়্যার ব্যবহার করেন, তবে সেটি আপডেট রাখতে আপনাকে প্রতিদিন কতটা কাজ বা
+পরিশ্রম করতে হয়?**
 
 - [ ] High (বেশি)
 - [ ] Medium (মাঝারি)
@@ -85,15 +83,14 @@
 
 ### 10. What is one feature you wish your current software had? (Optional)
 
-**আপনার বর্তমান সফটওয়্যারে এমন কোন ফিচার আছে যা আপনি থাকলে খুশি হতেন? (ঐচ্ছিক)**
+**আপনার বর্তমান সফটওয়্যারে এমন কোন ফিচার আছে যা আপনি থাকলে খুশি হতেন? (ঐচ্ছিক)**
 
 - (Open-ended text)
 
-### 11. If your churn rate could drop by 15% without any extra work from your staff, how valuable would that be?
+### 11. How important is reducing member drop-offs to your business right now?
 
-**কর্মীদের বাড়তি কোনো কাজ ছাড়াই যদি মেম্বার ড্রপ-আউট ১৫% কমিয়ে আনা যায়, তবে আপনার কাছে এই
-সুবিধাটির গুরুত্ব কতটা?**
+**মেম্বার ড্রপ-আউট কমানো এই মুহূর্তে আপনার ব্যবসার জন্য কতটা গুরুত্বপূর্ণ?**
 
-- [ ] High (বেশি)
-- [ ] Medium (মাঝারি)
-- [ ] Low (কম)
+- [ ] Top priority (সর্বোচ্চ অগ্রাধিকার)
+- [ ] Important but not urgent (গুরুত্বপূর্ণ তবে জরুরি নয়)
+- [ ] Not a focus right now (এখন ফোকাসে নেই)

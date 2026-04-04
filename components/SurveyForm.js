@@ -113,8 +113,8 @@ const questions = [
   {
     id: 'q_feature_help',
     en: {
-      text: 'If an ai tool could predict which members are likely to leave and send them personalised messages, and also alert your instructors so they could talk to them. Would that be helpful to you?',
-      options: ['Yes, very much', 'Maybe a little', 'No, not really']
+      text: 'If an AI tool could automatically identify members who are likely to stop coming — and help you reach out to them before they leave — would that be useful, or is that something you already handle well enough?',
+      options: ['Yes, very useful', 'Maybe', 'No, we handle it well enough']
     },
     bn: {
       text: 'যদি একটা AI টুল আগে থেকে অনুমান করতে পারে কোন মেম্বাররা আসা বন্ধ করতে পারে - তাদেরকে পার্সোনালাইজড মেসেজ পাঠায় এবং সাথে সাথে আপনার ট্রেইনারদেরও সতর্ক করে যাতে তারা তাদের সঙ্গে কথা বলতে পারেন — এটি কি আপনার জন্য উপকারী হবে?',
@@ -148,12 +148,12 @@ const questions = [
   {
     id: 'q_churn_drop_rating',
     en: {
-      text: 'If your churn rate could drop by 15% without any extra work from your staff, how valuable would that be?',
-      options: ['High', 'Medium', 'Low']
+      text: 'How important is reducing member drop-offs to your business right now?',
+      options: ['Top priority', 'Important but not urgent', 'Not a focus right now']
     },
     bn: {
-      text: 'কর্মীদের বাড়তি কোনো কাজ ছাড়াই যদি মেম্বার ড্রপ-আউট ১৫% কমিয়ে আনা যায়, তবে আপনার কাছে এই সুবিধাটির গুরুত্ব কতটা?',
-      options: ['বেশি', 'মাঝারি', 'কম']
+      text: 'মেম্বার ড্রপ-আউট কমানো এই মুহূর্তে আপনার ব্যবসার জন্য কতটা গুরুত্বপূর্ণ?',
+      options: ['সর্বোচ্চ অগ্রাধিকার', 'গুরুত্বপূর্ণ তবে জরুরি নয়', 'এখন ফোকাসে নেই']
     }
   }
 ];
