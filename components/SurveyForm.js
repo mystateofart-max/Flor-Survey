@@ -18,7 +18,7 @@ const uiText = {
     centreNamePlaceholder: 'Enter centre name',
   },
   bn: {
-    title: 'ফ্লোর সার্ভে',
+    title: 'Flor সার্ভে',
     subtitle: 'দয়া করে আপনার মেম্বার রিটেনশন প্রক্রিয়াগুলো সম্পর্কে এই প্রশ্নগুলোর উত্তর দেওয়ার জন্য একটু সময় দিন।',
     applicationsSubmitted: 'টি আবেদন জমা দেওয়া হয়েছে',
     thankYou: 'আপনাকে ধন্যবাদ!',
