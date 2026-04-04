@@ -91,7 +91,7 @@ const questions = [
   {
     id: 'q_frustration_rating',
     en: {
-      text: 'Roughly what percentage of your active members drop out or cancel their membership every month?',
+      text: 'Roughly what percentage of your active members drop out or cancel their membership every month (churn)?',
       options: ['Less than 5%', '5-10%', 'More than 10%']
     },
     bn: {
