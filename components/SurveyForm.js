@@ -411,7 +411,6 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
                           value={englishValue} 
                           checked={formData[q.id] === englishValue}
                           onChange={() => handleOptionChange(q.id, englishValue)}
-                          required
                         />
                         <span>{optionDisplayText}</span>
                       </label>
