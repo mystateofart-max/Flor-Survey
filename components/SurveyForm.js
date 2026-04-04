@@ -70,11 +70,11 @@ const questions = [
     id: 'q_does_it_work',
     en: {
       text: 'How effective are those efforts?',
-      options: ['Yes (Effective)', 'No (Not Effective)', 'Sometimes']
+      options: ['Yes - Effective', 'No - Not Effective', 'Sometimes']
     },
     bn: {
       text: 'আপনার সেই প্রচেষ্টাগুলো কি আশানুরূপ কাজে দেয়?',
-      options: ['হ্যাঁ (সফল)', 'না (ব্যর্থ)', 'মাঝে মাঝে']
+      options: ['হ্যাঁ - সফল', 'না - ব্যর্থ', 'মাঝে মাঝে']
     }
   },
   {
@@ -113,11 +113,11 @@ const questions = [
   {
     id: 'q_feature_help',
     en: {
-      text: 'We’re considering a feature that triggers an early alert when changes in a member’s workout patterns suggest they’re likely to disengage. Would this be helpful for your trainers?',
+      text: 'If an ai tool could predict which members are likely to leave and send them personalised messages, and also alert your instructors so they could talk to them. Would that be helpful to you?',
       options: ['Yes, very much', 'Maybe a little', 'No, not really']
     },
     bn: {
-      text: 'আমরা এমন একটি ফিচার নিয়ে ভাবছি যা কোনো মেম্বারের ওয়ার্কআউট প্যাটার্নের পরিবর্তন দেখে আগে থেকেই বুঝতে পারবে যে তিনি সেন্টার ছেড়ে দিতে পারেন এবং আপনার ট্রেইনারদের সতর্ক করবে। আপনার কি মনে হয় এটি ট্রেইনারদের জন্য সহায়ক হবে?',
+      text: 'যদি একটা AI টুল আগে থেকে অনুমান করতে পারে কোন মেম্বাররা আসা বন্ধ করতে পারে - তাদেরকে পার্সোনালাইজড মেসেজ পাঠায় এবং সাথে সাথে আপনার ট্রেইনারদেরও সতর্ক করে যাতে তারা তাদের সঙ্গে কথা বলতে পারেন — এটি কি আপনার জন্য উপকারী হবে?',
       options: ['হ্যাঁ, খুব সহায়ক হবে', 'হয়তো একটু', 'না, বিশেষ নয়']
     }
   },
