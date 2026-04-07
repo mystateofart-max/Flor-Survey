@@ -84,8 +84,7 @@ const questions = [
       options: ['Biometric/Fingerprint/REID', 'Mobile App / QR Code', 'Manual', 'None']
     },
     bn: {
-      text: 'মেম্বাররা যখন সেন্টারে আসেন, তখন তারা সাধারণত কীভাবে নিজেদের উপস্থিতি নথিভুক্ত করেন বা
-চেক-ইন করেন?',
+      text: 'মেম্বাররা যখন সেন্টারে আসেন, তখন তারা সাধারণত কীভাবে নিজেদের উপস্থিতি নথিভুক্ত করেন বা চেক-ইন করেন?',
       options: ['বায়োমেট্রিক/ফিঙ্গারপ্রিন্ট', 'মোবাইল অ্যাপ/কিউআর কোড', 'ম্যানুয়ালি', 'কোনওটিই নয়']
     }
   },
@@ -96,8 +95,7 @@ const questions = [
       options: ['Less than 5%', '5-10%', 'More than 10%']
     },
     bn: {
-      text: 'প্রতি মাসে আপনার মোট মেম্বারদের মধ্যে আনুমানিক কত শতাংশ আসা বন্ধ করে দেন আর ফিরে আসেন
-না?',
+      text: 'প্রতি মাসে আপনার মোট মেম্বারদের মধ্যে আনুমানিক কত শতাংশ আসা বন্ধ করে দেন আর ফিরে আসেন না?',
       options: ['৫% এর কম', '৫-১০%', '১০% এর বেশি']
     }
   },
@@ -115,11 +113,11 @@ const questions = [
   {
     id: 'q_feature_help',
     en: {
-      text: 'If an AI tool could automatically identify members who are likely to stop coming — and help you reach out to them before they leave — would that be useful, or is that something you already handle well enough?',
+      text: 'If an AI tool could automatically identify members who are likely to disengage — and reach out to them before they leave — would that be useful, or is that something you already handle well enough?',
       options: ['Yes, very useful', 'Maybe', 'No, we handle it well enough']
     },
     bn: {
-      text: 'যদি একটি এআই টুল স্বয়ংক্রিয়ভাবে চিহ্নিত করতে পারে কোন মেম্বাররা আসা বন্ধ করতে পারে — এবং তারা চলে যাওয়ার আগেই তাদের সাথে যোগাযোগ করতে সাহায্য করে — এটি কি আপনার কাজে আসবে, নাকি আপনি এখন যেভাবে সামলান তাতেই যথেষ্ট?',
+      text: 'যদি একটি এআই টুল স্বয়ংক্রিয়ভাবে চিহ্নিত করতে পারে কোন মেম্বাররা আসা বন্ধ করতে পারে — এবং চলে যাওয়ার আগেই তাদের সাথে যোগাযোগ করতে সাহায্য করে — এটি কি আপনার কাজে আসবে, নাকি আপনি এখন যেভাবে সামলান তাতেই যথেষ্ট?',
       options: ['হ্যাঁ, খুবই কাজে আসবে', 'হয়তো', 'না, আমরা এখন যেভাবে করি তাতেই চলে']
     }
   },
@@ -130,8 +128,7 @@ const questions = [
       options: ['High', 'Medium', 'Low']
     },
     bn: {
-      text: 'আপনি যদি কোনো সফটওয়্যার ব্যবহার করেন, তবে সেটি আপডেট রাখতে আপনাকে প্রতিদিন কতটা কাজ বা
-পরিশ্রম করতে হয়?',
+      text: 'আপনি যদি কোনো সফটওয়্যার ব্যবহার করেন, তবে সেটি আপডেট রাখতে আপনাকে প্রতিদিন কতটা কাজ বা পরিশ্রম করতে হয়?',
       options: ['বেশি', 'মাঝারি', 'কম']
     }
   },

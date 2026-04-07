@@ -64,9 +64,11 @@
 - [ ] Software (সফটওয়্যার)
 - [ ] None (কিছুই না)
 
-### 8. If an AI tool could automatically identify members who are likely to stop coming — and help you reach out to them before they leave — would that be useful, or is that something you already handle well enough?
+### 8. If an AI tool could automatically identify members who are likely to disengage — and reach out to them before they leave — would that be useful, or is that something you already handle well enough?
 
-**যদি একটি এআই টুল স্বয়ংক্রিয়ভাবে চিহ্নিত করতে পারে কোন মেম্বাররা আসা বন্ধ করতে পারে — এবং তারা চলে যাওয়ার আগেই তাদের সাথে যোগাযোগ করতে সাহায্য করে — এটি কি আপনার কাজে আসবে, নাকি আপনি এখন যেভাবে সামলান তাতেই যথেষ্ট?**
+**যদি একটি এআই টুল স্বয়ংক্রিয়ভাবে চিহ্নিত করতে পারে কোন মেম্বাররা আসা বন্ধ করতে পারে — এবং
+চলে যাওয়ার আগেই তাদের সাথে যোগাযোগ করতে সাহায্য করে — এটি কি আপনার কাজে আসবে, নাকি আপনি এখন
+যেভাবে সামলান তাতেই যথেষ্ট?**
 
 - [ ] Yes, very useful (হ্যাঁ, খুবই কাজে আসবে)
 - [ ] Maybe (হয়তো)
