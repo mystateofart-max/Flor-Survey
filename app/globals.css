@@ -319,28 +319,27 @@ a {
   color: #4B5563;
 }
 
-/* Call Button on Directory Cards */
+/* Call Button */
 .call-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+  padding: 8px 16px;
+  border-radius: 20px;
   background: #10B981;
   color: white;
   transition: all 0.2s ease;
-  flex-shrink: 0;
+  text-decoration: none;
 }
 
 .call-btn:hover {
   background: #059669;
-  transform: scale(1.1);
-  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
 }
 
 .call-btn:active {
-  transform: scale(0.95);
+  transform: translateY(0);
 }
 
 /* Info Card Style - Subtle */
