@@ -355,7 +355,7 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
                 <div className="centre-name-display">{selectedCentre.name}</div>
                 <div style={{ opacity: 0.8, fontSize: '13px', color: '#888' }}>{selectedCentre.location}</div>
               </div>
-              <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '12px' }}>
+              <div style={{ textAlign: 'right', display: 'flex', alignItems: 'center', gap: '16px' }}>
                 <div>
                   <h4>{lang === 'en' ? 'Phone Number' : 'ফোন নম্বর'}</h4>
                   <div className="phone-number">{selectedCentre.phone}</div>
