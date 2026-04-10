@@ -140,11 +140,11 @@ const questions = [
   {
     id: 'q_feature_help',
     en: {
-      text: 'If an AI tool could automatically identify members who are likely to disengage — and reach out to them before they leave — would that be useful, or is that something you already handle well enough?',
+      text: 'If a system could automatically identify members who are likely to disengage — and reach out to them before they leave — would that be useful, or is that something you already handle well enough?',
       options: ['Yes, very useful', 'Maybe', 'No, we handle it well enough']
     },
     bn: {
-      text: 'যদি একটি এআই টুল স্বয়ংক্রিয়ভাবে চিহ্নিত করতে পারে কোন মেম্বাররা আসা বন্ধ করতে পারে — এবং চলে যাওয়ার আগেই তাদের সাথে যোগাযোগ করতে সাহায্য করে — এটি কি আপনার কাজে আসবে, নাকি আপনি এখন যেভাবে সামলান তাতেই যথেষ্ট?',
+      text: 'যদি একটি সিস্টেম স্বয়ংক্রিয়ভাবে চিহ্নিত করতে পারে কোন মেম্বাররা আসা বন্ধ করতে পারে — এবং চলে যাওয়ার আগেই তাদের সাথে যোগাযোগ করতে সাহায্য করে — এটি কি আপনার কাজে আসবে, নাকি আপনি এখন যেভাবে সামলান তাতেই যথেষ্ট?',
       options: ['হ্যাঁ, খুবই কাজে আসবে', 'হয়তো', 'না, আমরা এখন যেভাবে করি তাতেই চলে']
     }
   },

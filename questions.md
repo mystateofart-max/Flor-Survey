@@ -64,9 +64,9 @@
 - [ ] We use software to give them a list (সফটওয়্যার থেকে লিস্ট দেওয়া হয়)
 - [ ] They just handle whoever asks for help (যে সাহায্য চায় শুধু তাকেই সাহায্য করে)
 
-### 8. If an AI tool could automatically identify members who are likely to disengage — and reach out to them before they leave — would that be useful, or is that something you already handle well enough?
+### 8. If a system could automatically identify members who are likely to disengage — and reach out to them before they leave — would that be useful, or is that something you already handle well enough?
 
-**যদি একটি এআই টুল স্বয়ংক্রিয়ভাবে চিহ্নিত করতে পারে কোন মেম্বাররা আসা বন্ধ করতে পারে — এবং
+**যদি একটি সিস্টেম স্বয়ংক্রিয়ভাবে চিহ্নিত করতে পারে কোন মেম্বাররা আসা বন্ধ করতে পারে — এবং
 চলে যাওয়ার আগেই তাদের সাথে যোগাযোগ করতে সাহায্য করে — এটি কি আপনার কাজে আসবে, নাকি আপনি এখন
 যেভাবে সামলান তাতেই যথেষ্ট?**
 
