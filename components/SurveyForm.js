@@ -594,7 +594,12 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
             </div>
           );
         })}
-        <div style={{ marginBottom: '16px' }}>
+        <div className="question-block" style={{ marginTop: '32px', padding: '24px', borderRadius: '8px', border: '1px solid var(--border)' }}>
+          <h3 style={{ marginBottom: '16px', lineHeight: '1.5' }}>
+            {lang === 'en' 
+              ? '"Thank you so much for your time today. Just before we hang up—as part of our launch campaign, we are offering a free trial of this software. There are no commitments. Would you like me to reserve a spot for you to try it out?"' 
+              : '"আপনাকে অনেক ধন্যবাদ সময় দেওয়ার জন্য। শেষ করার আগে একটা কথা, আমাদের লঞ্চ ক্যাম্পেইনের অংশ হিসেবে আমরা এই সফটওয়্যারটার একটা ফ্রি ট্রায়াল দিচ্ছি। আমি কি আপনার জন্য একটা স্পট কনফার্ম করে রাখব?"'}
+          </h3>
           <label className={`radio-container ${formData.interested_in_trial ? 'selected' : ''}`} style={{ marginBottom: 0 }}>
             <input 
               type="checkbox" 
@@ -602,7 +607,7 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
               onChange={(e) => handleOptionChange('interested_in_trial', e.target.checked)}
               style={{ width: '20px', height: '20px', accentColor: 'var(--primary)', cursor: 'pointer' }}
             />
-            <span>{lang === 'en' ? 'Yes, we are interested in a free trial' : 'হ্যাঁ, আমরা একটি ফ্রি ট্রায়ালে আগ্রহী'}</span>
+            <span style={{ fontWeight: 500 }}>{lang === 'en' ? 'Yes, reserve a spot for the free launch trial.' : 'হ্যাঁ, লঞ্চ উপলক্ষে ফ্রি ট্রায়ালের জন্য স্পট বুক করুন।'}</span>
           </label>
         </div>
         <div style={{ marginTop: '48px', textAlign: 'right', borderTop: '1px solid var(--border)', paddingTop: '32px' }}>
