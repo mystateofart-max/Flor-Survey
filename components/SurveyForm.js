@@ -38,7 +38,7 @@ const questions = [
     id: 'q_member_count',
     en: {
       text: 'How many active members do you currently have?',
-      options: ['<100', '100-250', '250-500', '500']
+      options: ['<100', '100-250', '250-500', '500+']
     },
     bn: {
       text: 'বর্তমানে আপনার মোট কতজন সক্রিয় মেম্বার আছেন?',
@@ -48,12 +48,12 @@ const questions = [
   {
     id: 'q_identify_member',
     en: {
-      text: 'How do you currently track or detect members who are at risk of dropping off?',
-      options: ['Software', 'Guess work', 'None']
+      text: 'How do you usually figure out if a member is losing interest or might drop out? Do you have a system, or is it mostly based on observation?',
+      options: ['Software', 'Relies on guesswork / observation', 'Only realizes when they don\'t renew']
     },
     bn: {
-      text: 'আপনি বর্তমানে ঠিক কীভাবে বোঝেন যে কোনো মেম্বার সেন্টার ছেড়ে দিতে পারেন?',
-      options: ['সফটওয়্যার', 'অনুমান করে', 'কোনওটিই নয়']
+      text: 'আপনি সাধারণত কীভাবে বোঝেন যে কোনো মেম্বার আগ্রহ হারিয়ে ফেলছে বা ছেড়ে দিতে পারে? আপনি কি কোনো সিস্টেম ব্যবহার করেন, নাকি কেবল নজরে রাখলেই বোঝেন?',
+      options: ['সফটওয়্যার', 'অনুমান বা নজরে রেখে', 'রিনিউ না করলে তবেই বুঝতে পারি']
     }
   },
   {
@@ -92,23 +92,23 @@ const questions = [
   {
     id: 'q_frustration_rating',
     en: {
-      text: 'Roughly what percentage of your active members drop out or cancel their membership every month (churn)?',
-      options: ['Less than 5%', '5-10%', 'More than 10%']
+      text: 'Do you have a rough idea of what percentage of your members drop out every month?',
+      options: ['Less than 5%', '5-10%', 'More than 10%', 'Not sure / Hard to track']
     },
     bn: {
-      text: 'প্রতি মাসে আপনার মোট মেম্বারদের মধ্যে আনুমানিক কত শতাংশ আসা বন্ধ করে দেন আর ফিরে আসেন না?',
-      options: ['৫% এর কম', '৫-১০%', '১০% এর বেশি']
+      text: 'প্রতি মাসে আপনার মেম্বারদের মধ্যে আনুমানিক কত শতাংশ আসা বন্ধ করে দেয়, তার কোনো ধারণা আছে কি?',
+      options: ['৫% এর কম', '৫-১০%', '১০% এর বেশি', 'সঠিক জানা নেই / ট্র্যাক করা কঠিন']
     }
   },
   {
     id: 'q_trainers_identify',
     en: {
-      text: 'Currently, how do your trainers identify who needs extra attention during a shift?',
-      options: ['Manual', 'Software', 'None']
+      text: 'During a busy shift, how do your trainers know who really needs extra attention that day?',
+      options: ['They rely on memory/relationships', 'We use software to give them a list', 'They just handle whoever asks for help']
     },
     bn: {
-      text: 'বর্তমানে আপনার ট্রেইনাররা কীভাবে বোঝেন যে শিফ্ট চলাকালীন কার বাড়তি মনোযোগ বা সাহায্য প্রয়োজন?',
-      options: ['ম্যানুয়াল', 'সফটওয়্যার', 'কিছুই না']
+      text: 'শিফটে যখন ভিড় থাকে, তখন আপনার ট্রেনাররা কীভাবে বোঝেন যে কার ওপর বাড়তি মনোযোগ দেওয়া দরকার?',
+      options: ['তারা নিজেদের স্মৃতি ও সম্পর্কের উপর নির্ভর করে', 'সফটওয়্যার থেকে লিস্ট দেওয়া হয়', 'যে সাহায্য চায় শুধু তাকেই সাহায্য করে']
     }
   },
   {
@@ -125,12 +125,12 @@ const questions = [
   {
     id: 'q_software_manual_labor',
     en: {
-      text: 'If you currently use a software, how much manual effort does it take to keep it updated?',
-      options: ['High', 'Medium', 'Low']
+      text: 'The software you are using right now—is it mostly helping you handle billing and admin tasks, or does it actually help you retain your members?',
+      options: ['Mainly Billing/Admin tool', 'Helps with retention', 'Not using any software']
     },
     bn: {
-      text: 'আপনি যদি কোনো সফটওয়্যার ব্যবহার করেন, তবে সেটি আপডেট রাখতে আপনাকে প্রতিদিন কতটা কাজ বা পরিশ্রম করতে হয়?',
-      options: ['বেশি', 'মাঝারি', 'কম']
+      text: 'বর্তমানে আপনারা যে সফটওয়্যারটা ব্যবহার করছেন, সেটা কি শুধু বিলিং বা ম্যানেজমেন্টের কাজেই লাগে, নাকি মেম্বারদের ধরে রাখতেও সাহায্য করে?',
+      options: ['মূলত বিলিং এবং অ্যাডমিনের জন্য', 'এটি মেম্বার ধরে রাখতেও সাহায্য করে', 'আমরা সফটওয়্যার ব্যবহার করি না']
     }
   },
   {
@@ -149,12 +149,12 @@ const questions = [
   {
     id: 'q_churn_drop_rating',
     en: {
-      text: 'How important is reducing member drop-offs to your business right now?',
-      options: ['Top priority', 'Important but not urgent', 'Not a focus right now']
+      text: 'As an owner, what would you say is your biggest headache right now—getting new walk-ins, or trying to stop existing members from leaving?',
+      options: ['Getting new members', 'Retaining existing ones', 'Both equally']
     },
     bn: {
-      text: 'মেম্বারদের আসা বন্ধ হয়ে যাওয়া (ড্রপ-আউট) কমানো এই মুহূর্তে আপনার ব্যবসার জন্য কতটা গুরুত্বপূর্ণ?',
-      options: ['সর্বোচ্চ অগ্রাধিকার', 'গুরুত্বপূর্ণ তবে জরুরি নয়', 'এখন ফোকাসে নেই']
+      text: 'একজন ওনার হিসেবে এই মুহূর্তে আপনার কাছে সবচেয়ে বড় চ্যালেঞ্জ কোনটা—নতুন মেম্বার আনা, নাকি যারা আছে তাদের ধরে রাখা?',
+      options: ['নতুন মেম্বার আনা', 'পুরনো মেম্বার ধরে রাখা', 'দুটোই সমান কঠিন']
     }
   }
 ];
