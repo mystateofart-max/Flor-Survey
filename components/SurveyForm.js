@@ -48,12 +48,12 @@ const questions = [
   {
     id: 'q_identify_member',
     en: {
-      text: 'How do you usually figure out if a member is losing interest or might drop out? Do you have a system, or is it mostly based on observation?',
-      options: ['Software', 'Relies on guesswork / observation', 'Only realizes when they don\'t renew']
+      text: 'When a member starts losing interest, how soon do you usually find out?',
+      options: ['Early — we have a system to track it', 'Sometimes — depends on the trainer noticing', 'Usually too late — only when they stop coming or don\'t renew']
     },
     bn: {
-      text: 'আপনি সাধারণত কীভাবে বোঝেন যে কোনো মেম্বার আগ্রহ হারিয়ে ফেলছে বা ছেড়ে দিতে পারে? আপনি কি কোনো সিস্টেম ব্যবহার করেন, নাকি কেবল নজরে রাখলেই বোঝেন?',
-      options: ['সফটওয়্যার', 'অনুমান বা নজরে রেখে', 'রিনিউ না করলে তবেই বুঝতে পারি']
+      text: 'কোনো মেম্বার যখন আগ্রহ হারাতে শুরু করে, আপনি সাধারণত কত তাড়াতাড়ি বুঝতে পারেন?',
+      options: ['তাড়াতাড়ি — আমাদের ট্র্যাক করার সিস্টেম আছে', 'মাঝে মাঝে — ট্রেনারের নজরে পড়লে', 'সাধারণত দেরিতে — যখন আসা বন্ধ করে বা রিনিউ করে না']
     }
   },
   {
