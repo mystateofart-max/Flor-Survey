@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { centres } from '@/lib/centres';
+import { supabase } from '@/lib/db';
 
 const uiText = {
   en: {
@@ -181,13 +182,27 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
   const [formData, setFormData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [listHeight, setListHeight] = useState(350);
+  const [isResizing, setIsResizing] = useState(false);
   const [lang, setLang] = useState('en');
   const [completedCentres, setCompletedCentres] = useState(new Set());
   const [selectedCentre, setSelectedCentre] = useState(null);
   const [currentCount, setCurrentCount] = useState(initialPropCount);
   
+  // Recording State
+  const [isRecording, setIsRecording] = useState(false);
+  const [mediaRecorder, setMediaRecorder] = useState(null);
+  const [audioURL, setAudioURL] = useState(null);
+  const chunksRef = useRef([]);
+  const fileNameRef = useRef(null);
+  
   // Filtering State
   const [selectedCategory, setSelectedCategory] = useState('All');
+
+  // Refs for smooth resizing
+  const listRef = useRef(null);
+  const sidebarRef = useRef(null);
+  const draggingRef = useRef(false);
 
   const t = uiText[lang];
 
@@ -215,6 +230,66 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
   const handleCentreSelect = (centre) => {
     setSelectedCentre(centre);
     setFormData(prev => ({ ...prev, centre_name: centre.name }));
+    setAudioURL(null); // Reset audio when changing centres
+    if (isRecording) stopRecording();
+  };
+
+  const startRecordingAndCall = async (phone) => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const recorder = new MediaRecorder(stream);
+      
+      const safeCentreName = selectedCentre?.name ? selectedCentre.name.replace(/[^a-z0-9]/gi, '_').toLowerCase() : 'unknown_centre';
+      const fileName = `${safeCentreName}_${Date.now()}.webm`;
+      fileNameRef.current = fileName;
+      
+      recorder.ondataavailable = (e) => {
+        if (e.data.size > 0) chunksRef.current.push(e.data);
+      };
+      
+      recorder.onstop = async () => {
+        const blob = new Blob(chunksRef.current, { type: 'audio/webm' });
+        chunksRef.current = [];
+        const url = URL.createObjectURL(blob);
+        setAudioURL(url);
+        stream.getTracks().forEach(track => track.stop());
+        
+        // Upload to Supabase Storage
+        if (fileNameRef.current) {
+          try {
+            const { error } = await supabase.storage
+              .from('recordings')
+              .upload(fileNameRef.current, blob, { 
+                contentType: 'audio/webm',
+                cacheControl: '3600',
+                upsert: false 
+              });
+            if (error) console.error("Storage upload error:", error);
+          } catch (storageErr) {
+            console.error("Storage exception:", storageErr);
+          }
+        }
+      };
+      
+      recorder.start();
+      setMediaRecorder(recorder);
+      setIsRecording(true);
+      
+      // Trigger the native phone dialer after starting recording
+      window.location.href = `tel:${phone.replace(/\s/g, '')}`;
+    } catch (err) {
+      console.error("Microphone access denied", err);
+      alert("Microphone access is needed to record calls. Please enable permissions.");
+      // Fallback to just calling if denied
+      window.location.href = `tel:${phone.replace(/\s/g, '')}`;
+    }
+  };
+
+  const stopRecording = () => {
+    if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+      mediaRecorder.stop();
+      setIsRecording(false);
+    }
   };
 
   const filteredCentres = centres.filter(centre => {
@@ -239,6 +314,58 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
 
     return stats;
   };
+
+  // Draggable Height Logic
+  const startResizing = (e) => {
+    e.preventDefault();
+    draggingRef.current = true;
+    setIsResizing(true);
+  };
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (!draggingRef.current || !listRef.current || !sidebarRef.current) return;
+      
+      const sidebarTop = sidebarRef.current.getBoundingClientRect().top;
+      const headerHeight = 84; 
+      const bufferSpace = 250; 
+      const newHeight = e.clientY - sidebarTop - headerHeight;
+      
+      const maxHeight = window.innerHeight - sidebarTop - headerHeight - bufferSpace;
+
+      if (newHeight > 100 && newHeight < maxHeight) {
+        listRef.current.style.height = `${newHeight}px`;
+      }
+    };
+
+    const stopResizing = () => {
+      if (draggingRef.current && listRef.current) {
+        const finalHeight = parseInt(listRef.current.style.height);
+        setListHeight(finalHeight);
+      }
+      draggingRef.current = false;
+      setIsResizing(false);
+    };
+
+    if (isResizing) {
+      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mouseup', stopResizing);
+      document.body.style.cursor = 'ns-resize';
+      document.body.style.userSelect = 'none'; 
+    } else {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', stopResizing);
+      document.body.style.cursor = 'default';
+      document.body.style.userSelect = 'auto';
+    }
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', stopResizing);
+      document.body.style.cursor = 'default';
+      document.body.style.userSelect = 'auto';
+    };
+  }, [isResizing]);
 
   const categoryStats = getCategoryStats();
 
@@ -270,15 +397,6 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
     }
   };
 
-  if (isSuccess) {
-    return (
-      <div style={{ textAlign: 'center', padding: '40px', backgroundColor: 'var(--surface)', borderRadius: '12px', border: '1px solid var(--border)' }}>
-        <h1 style={{ color: 'var(--primary)', marginBottom: '16px' }}>{t.thankYou}</h1>
-        <p style={{ fontSize: '18px', marginBottom: '32px', color: 'var(--foreground)' }}>{t.thankYouMessage}</p>
-        <button className="btn-primary" onClick={() => { setIsSuccess(false); setFormData({}); }}>{t.submitAnother}</button>
-      </div>
-    );
-  }
 
   return (
     <div className="survey-container">
@@ -301,7 +419,7 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
       </div>
       
       <div className="survey-layout">
-        <aside className="directory-sidebar">
+        <aside className="directory-sidebar" ref={sidebarRef}>
           <div className="directory-header">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <h2>{lang === 'en' ? 'Centres Directory' : 'সেন্টার ডিরেক্টরি'}</h2>
@@ -317,7 +435,14 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
               </select>
             </div>
           </div>
-          <div className="directory-list">
+          <div 
+            className="directory-list"
+            ref={listRef}
+            style={{ 
+              height: selectedCentre ? `${listHeight}px` : 'auto',
+              flex: selectedCentre ? 'none' : '1'
+            }}
+          >
             {filteredCentres.map((centre) => {
               const isCompleted = completedCentres.has(centre.name);
               const isSelected = selectedCentre?.name === centre.name;
@@ -343,38 +468,74 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
               );
             })}
           </div>
+          {selectedCentre && (
+            <>
+              <div 
+                className={`resizer-handle ${isResizing ? 'active' : ''}`}
+                onMouseDown={startResizing}
+                title="Drag to adjust list height"
+              ></div>
+              <div className="info-card" style={{ marginTop: '0', marginBottom: '0', flexDirection: 'column', alignItems: 'flex-start', gap: '12px', padding: '16px', flexShrink: 0 }}>
+                <div style={{ width: '100%' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                    <span className="status-badge" style={{ fontSize: '10px', background: 'var(--primary)', color: 'white', letterSpacing: '0.5px', padding: '2px 6px' }}>{selectedCentre.category}</span>
+                  </div>
+                  <div className="centre-name-display" style={{ fontSize: '16px' }}>{selectedCentre.name}</div>
+                  <div style={{ opacity: 0.8, fontSize: '12px', color: '#888' }}>{selectedCentre.location}</div>
+                </div>
+                <div style={{ width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '10px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', justifyContent: 'space-between', width: '100%' }}>
+                    <div style={{ textAlign: 'left' }}>
+                      <h4 style={{ fontSize: '11px', marginBottom: '2px' }}>{lang === 'en' ? 'Phone Number' : 'ফোন নম্বর'}</h4>
+                      <div className="phone-number" style={{ fontSize: '15px' }}>{selectedCentre.phone}</div>
+                    </div>
+                    
+                    {!isRecording ? (
+                      <button 
+                        onClick={() => startRecordingAndCall(selectedCentre.phone)}
+                        className="call-btn"
+                        style={{ padding: '8px 12px', fontSize: '13px' }}
+                        title={`Call ${selectedCentre.phone}`}
+                      >
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+                        </svg>
+                        <span>{lang === 'en' ? 'Call' : 'কল করুন'}</span>
+                      </button>
+                    ) : (
+                      <button 
+                        onClick={stopRecording}
+                        className="call-btn error"
+                        style={{ padding: '8px 12px', fontSize: '13px' }}
+                        title="Stop Recording"
+                      >
+                        <span className="pulse-dot"></span>
+                        <span>{lang === 'en' ? 'Stop' : 'বন্ধ করুন'}</span>
+                      </button>
+                    )}
+                  </div>
+                  
+                  {audioURL && (
+                    <div style={{ marginTop: '4px', animation: 'fadeIn 0.3s ease', width: '100%' }}>
+                      <audio src={audioURL} controls style={{ height: '32px', width: '100%' }} />
+                    </div>
+                  )}
+                </div>
+              </div>
+            </>
+          )}
         </aside>
 
         <div className="form-wrapper" style={{ flex: 1, height: 'max-content' }}>
-          {selectedCentre && (
-            <div className="info-card">
-              <div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '10px' }}>
-                  <span className="status-badge" style={{ fontSize: '10px', background: 'var(--primary)', color: 'white', letterSpacing: '0.5px', padding: '2px 6px' }}>{selectedCentre.category}</span>
-                </div>
-                <div className="centre-name-display">{selectedCentre.name}</div>
-                <div style={{ opacity: 0.8, fontSize: '13px', color: '#888' }}>{selectedCentre.location}</div>
-              </div>
-              <div style={{ textAlign: 'right', display: 'flex', alignItems: 'center', gap: '16px' }}>
-                <div>
-                  <h4>{lang === 'en' ? 'Phone Number' : 'ফোন নম্বর'}</h4>
-                  <div className="phone-number">{selectedCentre.phone}</div>
-                </div>
-                <a 
-                  href={`tel:${selectedCentre.phone.replace(/\s/g, '')}`}
-                  className="call-btn"
-                  title={`Call ${selectedCentre.phone}`}
-                >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
-                  </svg>
-                  <span>{lang === 'en' ? 'Call Now' : 'কল করুন'}</span>
-                </a>
-              </div>
-            </div>
-          )}
 
-          <form onSubmit={handleSubmit}>
+          {isSuccess ? (
+            <div style={{ textAlign: 'center', padding: '40px', backgroundColor: 'var(--surface)', borderRadius: '12px', border: '1px solid var(--border)', marginTop: '24px' }}>
+              <h1 style={{ color: 'var(--primary)', marginBottom: '16px' }}>{t.thankYou}</h1>
+              <p style={{ fontSize: '18px', marginBottom: '32px', color: 'var(--foreground)' }}>{t.thankYouMessage}</p>
+              <button className="btn-primary" onClick={() => { setIsSuccess(false); setFormData({ centre_name: selectedCentre?.name || '' }); }}>{t.submitAnother}</button>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit}>
             <div className="question-block" style={{ marginBottom: '48px', borderBottom: '1px solid var(--border)', paddingBottom: '32px' }}>
               <h3 style={{ marginBottom: '16px' }}>{t.centreNameLabel}</h3>
               <input 
@@ -433,12 +594,24 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
             </div>
           );
         })}
+        <div style={{ marginBottom: '16px' }}>
+          <label className={`radio-container ${formData.interested_in_trial ? 'selected' : ''}`} style={{ marginBottom: 0 }}>
+            <input 
+              type="checkbox" 
+              checked={!!formData.interested_in_trial}
+              onChange={(e) => handleOptionChange('interested_in_trial', e.target.checked)}
+              style={{ width: '20px', height: '20px', accentColor: 'var(--primary)', cursor: 'pointer' }}
+            />
+            <span>{lang === 'en' ? 'Yes, we are interested in a free trial' : 'হ্যাঁ, আমরা একটি ফ্রি ট্রায়ালে আগ্রহী'}</span>
+          </label>
+        </div>
         <div style={{ marginTop: '48px', textAlign: 'right', borderTop: '1px solid var(--border)', paddingTop: '32px' }}>
           <button type="submit" className="btn-primary" disabled={isSubmitting}>
             {isSubmitting ? t.submitting : t.submitSurvey}
           </button>
         </div>
           </form>
+          )}
         </div>
       </div>
     </div>

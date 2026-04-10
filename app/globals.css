@@ -198,13 +198,20 @@ a {
 .directory-sidebar {
   width: 320px;
   flex-shrink: 0;
-  max-height: calc(100vh - 150px);
+  height: auto;
+  max-height: calc(100vh - 40px);
   background: transparent;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   position: sticky;
   top: 40px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+
+.directory-sidebar::-webkit-scrollbar {
+  display: none;
 }
 
 .directory-header {
@@ -246,6 +253,61 @@ a {
   flex: 1;
   overflow-y: auto;
   padding: 12px 0;
+  min-height: 100px;
+}
+
+.resizer-handle {
+  height: 16px;
+  width: 100%;
+  cursor: ns-resize;
+  background: #F9FAFB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+  position: relative;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.resizer-handle::after {
+  content: '';
+  width: 40px;
+  height: 4px;
+  background: #E5E7EB;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.05);
+}
+
+.resizer-handle::before {
+  content: '...';
+  position: absolute;
+  top: -2px;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: #9CA3AF;
+  pointer-events: none;
+}
+
+.resizer-handle:hover {
+  background: #F3F4F6;
+}
+
+.resizer-handle:hover::after {
+  background: var(--primary);
+  opacity: 0.8;
+}
+
+.resizer-handle.active {
+  background: rgba(199, 108, 75, 0.1);
+}
+
+.resizer-handle.active::after {
+  background: var(--primary);
+  width: 60px;
 }
 
 .directory-item {
@@ -332,14 +394,60 @@ a {
   text-decoration: none;
 }
 
-.call-btn:hover {
+.call-btn:hover:not(:disabled) {
   background: #059669;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
 }
 
-.call-btn:active {
+.call-btn:active:not(:disabled) {
   transform: translateY(0);
+}
+
+.call-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.call-btn.calling {
+  background: #F59E0B; /* Amber/Yellow for calling */
+}
+
+.call-btn.success {
+  background: #10B981; /* Green for success */
+}
+
+.call-btn.error {
+  background: #EF4444; /* Red for error */
+}
+
+.call-btn span {
+  margin-left: 8px;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.pulse-dot {
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0.8); opacity: 0.5; }
 }
 
 /* Info Card Style - Subtle */
@@ -402,7 +510,7 @@ a {
   }
   .directory-sidebar {
     width: 100%;
-    max-height: 400px;
+    max-height: none;
     position: relative;
     top: 0;
   }
