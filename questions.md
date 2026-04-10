@@ -13,13 +13,13 @@
 - [ ] 250-500 (২৫০-৫০০)
 - [ ] 500+ (৫০০ এর বেশি)
 
-### 2. How do you usually figure out if a member is losing interest or might drop out? Do you have a system, or is it mostly based on observation?
+### 2. When a member starts losing interest, how soon do you usually find out?
 
-**আপনি সাধারণত কীভাবে বোঝেন যে কোনো মেম্বার আগ্রহ হারিয়ে ফেলছে বা ছেড়ে দিতে পারে? আপনি কি কোনো সিস্টেম ব্যবহার করেন, নাকি কেবল নজরে রাখলেই বোঝেন?**
+**কোনো মেম্বার যখন আগ্রহ হারাতে শুরু করে, আপনি সাধারণত কত তাড়াতাড়ি বুঝতে পারেন?**
 
-- [ ] Software (সফটওয়্যার)
-- [ ] Relies on guesswork / observation (অনুমান বা নজরে রেখে)
-- [ ] Only realizes when they don't renew (রিনিউ না করলে তবেই বুঝতে পারি)
+- [ ] Early — we have a system to track it (তাড়াতাড়ি — আমাদের ট্র্যাক করার সিস্টেম আছে)
+- [ ] Sometimes — depends on the trainer noticing (মাঝে মাঝে — ট্রেনারের নজরে পড়লে)
+- [ ] Usually too late — only when they stop coming or don't renew (সাধারণত দেরিতে — যখন আসা বন্ধ করে বা রিনিউ করে না)
 
 ### 3. Do you take any specific steps to try and retain them?
 
@@ -49,7 +49,7 @@
 
 ### 6. Do you have a rough idea of what percentage of your members drop out every month?
 
-**প্রতি মাসে আপনার মেম্বারদের মধ্যে আনুমানিক কত শতাংশ আসা বন্ধ করে দেয়, তার কোনো ধারণা আছে কি?**
+**প্রতি মাসে আপনার মেম্বারদের মধ্যে আনুমানিক কত শতাংশ আসা বন্ধ করে দেয়, তার কোনো ধারণা আছে কি?**
 
 - [ ] Less than 5% (৫% এর কম)
 - [ ] 5-10% (৫-১০%)
@@ -58,11 +58,11 @@
 
 ### 7. During a busy shift, how do your trainers know who really needs extra attention that day?
 
-**শিফটে যখন ভিড় থাকে, তখন আপনার ট্রেনাররা কীভাবে বোঝেন যে কার ওপর বাড়তি মনোযোগ দেওয়া দরকার?**
+**শিফটে যখন ভিড় থাকে, তখন আপনার ট্রেনাররা কীভাবে বোঝেন যে কার ওপর বাড়তি মনোযোগ দেওয়া দরকার?**
 
 - [ ] They rely on memory/relationships (তারা নিজেদের স্মৃতি ও সম্পর্কের উপর নির্ভর করে)
-- [ ] We use software to give them a list (সফটওয়্যার থেকে লিস্ট দেওয়া হয়)
-- [ ] They just handle whoever asks for help (যে সাহায্য চায় শুধু তাকেই সাহায্য করে)
+- [ ] We use software to give them a list (সফটওয়্যার থেকে লিস্ট দেওয়া হয়)
+- [ ] They just handle whoever asks for help (যে সাহায্য চায় শুধু তাকেই সাহায্য করে)
 
 ### 8. If an AI tool could automatically identify members who are likely to disengage — and reach out to them before they leave — would that be useful, or is that something you already handle well enough?
 
@@ -76,7 +76,7 @@
 
 ### 9. The software you are using right now—is it mostly helping you handle billing and admin tasks, or does it actually help you retain your members?
 
-**বর্তমানে আপনারা যে সফটওয়্যারটা ব্যবহার করছেন, সেটা কি শুধু বিলিং বা ম্যানেজমেন্টের কাজেই লাগে, নাকি মেম্বারদের ধরে রাখতেও সাহায্য করে?**
+**বর্তমানে আপনারা যে সফটওয়্যারটা ব্যবহার করছেন, সেটা কি শুধু বিলিং বা ম্যানেজমেন্টের কাজেই লাগে, নাকি মেম্বারদের ধরে রাখতেও সাহায্য করে?**
 
 - [ ] Mainly Billing/Admin tool (মূলত বিলিং এবং অ্যাডমিনের জন্য)
 - [ ] Helps with retention (এটি মেম্বার ধরে রাখতেও সাহায্য করে)
@@ -90,7 +90,7 @@
 
 ### 11. As an owner, what would you say is your biggest headache right now—getting new walk-ins, or trying to stop existing members from leaving?
 
-**একজন ওনার হিসেবে এই মুহূর্তে আপনার কাছে সবচেয়ে বড় চ্যালেঞ্জ কোনটা—নতুন মেম্বার আনা, নাকি যারা আছে তাদের ধরে রাখা?**
+**একজন ওনার হিসেবে এই মুহূর্তে আপনার কাছে সবচেয়ে বড় চ্যালেঞ্জ কোনটা—নতুন মেম্বার আনা, নাকি যারা আছে তাদের ধরে রাখা?**
 
 - [ ] Getting new members (নতুন মেম্বার আনা)
 - [ ] Retaining existing ones (পুরনো মেম্বার ধরে রাখা)
@@ -102,6 +102,6 @@
 
 **"Thank you so much for your time today. Just before we hang up—as part of our launch campaign, we are offering a free trial of this software. There are no commitments. Would you like me to reserve a spot for you to try it out?"**
 
-**(আপনাকে অনেক ধন্যবাদ সময় দেওয়ার জন্য। শেষ করার আগে একটা কথা, আমাদের লঞ্চ ক্যাম্পেইনের অংশ হিসেবে আমরা এই সফটওয়্যারটার একটা ফ্রি ট্রায়াল দিচ্ছি। আমি কি আপনার জন্য একটা স্পট কনফার্ম করে রাখব?)**
+**(আপনাকে অনেক ধন্যবাদ সময় দেওয়ার জন্য। শেষ করার আগে একটা কথা, আমাদের লঞ্চ ক্যাম্পেইনের অংশ হিসেবে আমরা এই সফটওয়্যারটার একটা ফ্রি ট্রায়াল দিচ্ছি। আমি কি আপনার জন্য একটা স্পট কনফার্ম করে রাখব?)**
 
 - [ ] Yes, reserve a spot for the free launch trial (হ্যাঁ, লঞ্চ উপলক্ষে ফ্রি ট্রায়ালের জন্য স্পট বুক করুন)
