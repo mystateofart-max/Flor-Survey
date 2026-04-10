@@ -7,7 +7,7 @@ export default async function Page() {
   let count = 0;
   try {
     const responses = await getResponses();
-    count = responses.length;
+    count = responses.filter(r => r.survey_completed).length;
   } catch (err) {
     console.error('Failed to fetch response count:', err);
   }

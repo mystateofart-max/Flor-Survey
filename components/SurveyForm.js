@@ -17,6 +17,19 @@ const uiText = {
     switchLang: 'বাংলায় দেখুন',
     centreNameLabel: 'Name of the Centre',
     centreNamePlaceholder: 'Enter centre name',
+    callStatus: 'Call Status',
+    callNote: 'Note',
+    callNotePlaceholder: 'e.g. Said to call after 3pm...',
+    saveStatus: 'Save Status',
+    savingStatus: 'Saving...',
+    statusSaved: 'Status saved!',
+    callStatuses: {
+      connected: 'Connected',
+      no_answer: 'No Answer',
+      call_later: 'Call Later',
+      busy: 'Busy',
+      wrong_number: 'Wrong Number',
+    },
   },
   bn: {
     title: 'Flor সার্ভে',
@@ -30,6 +43,19 @@ const uiText = {
     switchLang: 'ইংরেজিতে দেখুন',
     centreNameLabel: 'সেন্টারের নাম',
     centreNamePlaceholder: 'সেন্টারের নাম লিখুন',
+    callStatus: 'কল স্ট্যাটাস',
+    callNote: 'নোট',
+    callNotePlaceholder: 'যেমন: বিকেল ৩টার পর কল করতে বলেছেন...',
+    saveStatus: 'স্ট্যাটাস সেভ করুন',
+    savingStatus: 'সেভ হচ্ছে...',
+    statusSaved: 'স্ট্যাটাস সেভ হয়েছে!',
+    callStatuses: {
+      connected: 'কানেক্টেড',
+      no_answer: 'রিসিভ করেনি',
+      call_later: 'পরে কল করতে হবে',
+      busy: 'ব্যস্ত',
+      wrong_number: 'ভুল নম্বর',
+    },
   }
 };
 
@@ -196,6 +222,13 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
   const chunksRef = useRef([]);
   const fileNameRef = useRef(null);
   
+  // Call Status State
+  const [callStatus, setCallStatus] = useState(null);
+  const [callNote, setCallNote] = useState('');
+  const [isSavingStatus, setIsSavingStatus] = useState(false);
+  const [statusSavedMsg, setStatusSavedMsg] = useState(false);
+  const [savedStatuses, setSavedStatuses] = useState({});
+
   // Filtering State
   const [selectedCategory, setSelectedCategory] = useState('All');
 
@@ -212,9 +245,22 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
         const res = await fetch('/api/responses');
         if (res.ok) {
           const data = await res.json();
-          const names = new Set(data.map(r => r.centre_name));
+          const completed = data.filter(r => r.survey_completed);
+          const names = new Set(completed.map(r => r.centre_name));
           setCompletedCentres(names);
-          setCurrentCount(data.length);
+          setCurrentCount(completed.length);
+
+          // Build a map of latest call status per centre
+          const statusMap = {};
+          data.forEach(r => {
+            if (r.call_status) {
+              statusMap[r.centre_name] = {
+                call_status: r.call_status,
+                call_note: r.call_note || '',
+              };
+            }
+          });
+          setSavedStatuses(statusMap);
         }
       } catch (err) {
         console.error('Failed to fetch completion status:', err);
@@ -231,6 +277,10 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
     setSelectedCentre(centre);
     setFormData(prev => ({ ...prev, centre_name: centre.name }));
     setAudioURL(null); // Reset audio when changing centres
+    const saved = savedStatuses[centre.name];
+    setCallStatus(saved?.call_status || null);
+    setCallNote(saved?.call_note || '');
+    setStatusSavedMsg(false);
     if (isRecording) stopRecording();
   };
 
@@ -289,6 +339,35 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
     if (mediaRecorder && mediaRecorder.state !== 'inactive') {
       mediaRecorder.stop();
       setIsRecording(false);
+    }
+  };
+
+  const saveCallStatus = async () => {
+    if (!selectedCentre || !callStatus) return;
+    setIsSavingStatus(true);
+    setStatusSavedMsg(false);
+    try {
+      const res = await fetch('/api/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          centre_name: selectedCentre.name,
+          call_status: callStatus,
+          call_note: callNote || null,
+        })
+      });
+      if (res.ok) {
+        setStatusSavedMsg(true);
+        setSavedStatuses(prev => ({
+          ...prev,
+          [selectedCentre.name]: { call_status: callStatus, call_note: callNote || '' },
+        }));
+        setTimeout(() => setStatusSavedMsg(false), 3000);
+      }
+    } catch (err) {
+      alert('Failed to save call status.');
+    } finally {
+      setIsSavingStatus(false);
     }
   };
 
@@ -381,7 +460,12 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
       const res = await fetch('/api/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          ...formData,
+          call_status: callStatus || null,
+          call_note: callNote || null,
+          survey_completed: true,
+        })
       });
       
       if (res.ok) {
@@ -446,9 +530,18 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
             {filteredCentres.map((centre) => {
               const isCompleted = completedCentres.has(centre.name);
               const isSelected = selectedCentre?.name === centre.name;
-              
+              const centreStatus = savedStatuses[centre.name]?.call_status;
+
+              const statusConfig = {
+                connected: { label: lang === 'en' ? 'Connected' : 'কানেক্টেড', bg: '#dcfce7', color: '#166534' },
+                no_answer: { label: lang === 'en' ? 'No Answer' : 'রিসিভ করেনি', bg: '#fee2e2', color: '#991b1b' },
+                call_later: { label: lang === 'en' ? 'Call Later' : 'পরে কল', bg: '#fef9c3', color: '#854d0e' },
+                busy: { label: lang === 'en' ? 'Busy' : 'ব্যস্ত', bg: '#ffedd5', color: '#9a3412' },
+                wrong_number: { label: lang === 'en' ? 'Wrong No.' : 'ভুল নম্বর', bg: '#f1f5f9', color: '#475569' },
+              };
+
               return (
-                <div 
+                <div
                   key={centre.name}
                   className={`directory-item ${isSelected ? 'selected' : ''} ${isCompleted ? 'completed' : ''}`}
                   onClick={() => handleCentreSelect(centre)}
@@ -457,11 +550,24 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
                     <span className="centre-name">{centre.name}</span>
                     <span className="centre-loc">{centre.location}</span>
                   </div>
-                  <div className="status-indicator">
+                  <div className="status-indicator" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '3px' }}>
                     {isCompleted ? (
                       <span className="status-badge done">Done</span>
                     ) : (
                       <span className="status-badge pending">Pending</span>
+                    )}
+                    {centreStatus && statusConfig[centreStatus] && (
+                      <span style={{
+                        fontSize: '9px',
+                        fontWeight: 600,
+                        padding: '1px 6px',
+                        borderRadius: '8px',
+                        background: statusConfig[centreStatus].bg,
+                        color: statusConfig[centreStatus].color,
+                        whiteSpace: 'nowrap',
+                      }}>
+                        {statusConfig[centreStatus].label}
+                      </span>
                     )}
                   </div>
                 </div>
@@ -518,6 +624,75 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
                   {audioURL && (
                     <div style={{ marginTop: '4px', animation: 'fadeIn 0.3s ease', width: '100%' }}>
                       <audio src={audioURL} controls style={{ height: '32px', width: '100%' }} />
+                    </div>
+                  )}
+                </div>
+
+                {/* Call Status Section */}
+                <div style={{ width: '100%', borderTop: '1px solid var(--border)', paddingTop: '12px', marginTop: '4px' }}>
+                  <h4 style={{ fontSize: '11px', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px', color: '#888' }}>{t.callStatus}</h4>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '10px' }}>
+                    {Object.entries(t.callStatuses).map(([key, label]) => (
+                      <button
+                        key={key}
+                        type="button"
+                        onClick={() => setCallStatus(key)}
+                        style={{
+                          padding: '4px 10px',
+                          fontSize: '12px',
+                          borderRadius: '12px',
+                          border: callStatus === key ? '1.5px solid var(--primary)' : '1px solid var(--border)',
+                          background: callStatus === key ? 'var(--primary)' : 'transparent',
+                          color: callStatus === key ? 'white' : 'var(--foreground)',
+                          cursor: 'pointer',
+                          fontWeight: callStatus === key ? 600 : 400,
+                          transition: 'all 0.15s ease',
+                        }}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
+                  <textarea
+                    placeholder={t.callNotePlaceholder}
+                    value={callNote}
+                    onChange={(e) => setCallNote(e.target.value)}
+                    style={{
+                      width: '100%',
+                      minHeight: '48px',
+                      padding: '8px 10px',
+                      fontSize: '12px',
+                      borderRadius: '6px',
+                      border: '1px solid var(--border)',
+                      background: 'var(--background)',
+                      resize: 'vertical',
+                      fontFamily: 'inherit',
+                      boxSizing: 'border-box',
+                    }}
+                  />
+                  {callStatus && callStatus !== 'connected' && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '8px' }}>
+                      <button
+                        type="button"
+                        onClick={saveCallStatus}
+                        disabled={isSavingStatus}
+                        style={{
+                          padding: '6px 14px',
+                          fontSize: '12px',
+                          fontWeight: 500,
+                          borderRadius: '6px',
+                          border: 'none',
+                          background: 'var(--primary)',
+                          color: 'white',
+                          cursor: isSavingStatus ? 'not-allowed' : 'pointer',
+                          opacity: isSavingStatus ? 0.7 : 1,
+                        }}
+                      >
+                        {isSavingStatus ? t.savingStatus : t.saveStatus}
+                      </button>
+                      {statusSavedMsg && (
+                        <span style={{ fontSize: '12px', color: '#22c55e', fontWeight: 500 }}>{t.statusSaved}</span>
+                      )}
                     </div>
                   )}
                 </div>

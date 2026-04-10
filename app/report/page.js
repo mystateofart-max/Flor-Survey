@@ -37,13 +37,33 @@ export default async function ReportPage() {
               return (
               <div key={res.id} style={{ padding: '24px', background: 'var(--surface)', borderRadius: '12px', border: '1px solid var(--border)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '16px', borderBottom: '1px solid var(--border)', paddingBottom: '12px' }}>
-                  <h3 style={{ color: 'var(--primary)', marginBottom: '8px' }}>Response #{responses.length - i} - {res.centre_name}</h3>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
+                    <h3 style={{ color: 'var(--primary)', marginBottom: '0' }}>Response #{responses.length - i} - {res.centre_name}</h3>
+                    {res.call_status && (
+                      <span style={{
+                        padding: '2px 10px',
+                        fontSize: '11px',
+                        fontWeight: 600,
+                        borderRadius: '12px',
+                        background: res.call_status === 'connected' ? '#dcfce7' : res.call_status === 'no_answer' ? '#fee2e2' : res.call_status === 'call_later' ? '#fef9c3' : res.call_status === 'busy' ? '#ffedd5' : '#f1f5f9',
+                        color: res.call_status === 'connected' ? '#166534' : res.call_status === 'no_answer' ? '#991b1b' : res.call_status === 'call_later' ? '#854d0e' : res.call_status === 'busy' ? '#9a3412' : '#475569',
+                        textTransform: 'capitalize',
+                      }}>
+                        {res.call_status.replace('_', ' ')}
+                      </span>
+                    )}
+                  </div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                     <span style={{ color: '#94A3B8', fontSize: '14px' }}>
                       {new Date(res.created_at).toLocaleString()}
                     </span>
                   </div>
                 </div>
+                {res.call_note && (
+                  <div style={{ marginBottom: '16px', padding: '10px 14px', background: '#FFFBEB', borderRadius: '6px', border: '1px solid #FDE68A', fontSize: '13px', color: '#92400E' }}>
+                    <strong>Note:</strong> {res.call_note}
+                  </div>
+                )}
                 
                 {matchingRecordings.length > 0 && (
                   <div style={{ marginBottom: '24px', padding: '16px', background: '#F8FAFC', borderRadius: '8px', border: '1px solid #E2E8F0' }}>
