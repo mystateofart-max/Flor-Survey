@@ -598,7 +598,7 @@ export default function SurveyForm({ initialCount: initialPropCount }) {
           <h3 style={{ marginBottom: '16px', lineHeight: '1.5' }}>
             {lang === 'en' 
               ? '"Thank you so much for your time today. Just before we hang up—as part of our launch campaign, we are offering a free trial of this software. There are no commitments. Would you like me to reserve a spot for you to try it out?"' 
-              : '"আপনাকে অনেক ধন্যবাদ সময় দেওয়ার জন্য। শেষ করার আগে একটা কথা, আমাদের লঞ্চ ক্যাম্পেইনের অংশ হিসেবে আমরা এই সফটওয়্যারটার একটা ফ্রি ট্রায়াল দিচ্ছি। আমি কি আপনার জন্য একটা স্পট কনফার্ম করে রাখব?"'}
+              : '"অনেক ধন্যবাদ আপনার মূল্যবান সময়ের জন্য। শেষ করার আগে একটা কথা বলি — আমরা লঞ্চের সময় এই সফটওয়্যারটা ফ্রি-তে ট্রায়াল করার সুযোগ দিচ্ছি। কোনো খরচ নেই, কোনো বাধ্যবাধকতা নেই। আপনার জন্য একটা স্পট রেখে দেব?"'}
           </h3>
           <label className={`radio-container ${formData.interested_in_trial ? 'selected' : ''}`} style={{ marginBottom: 0 }}>
             <input 
